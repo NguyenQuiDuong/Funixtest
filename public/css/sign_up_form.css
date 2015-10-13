@@ -1,0 +1,20 @@
+.sign_up_form .input_email {
+    width: 270px;
+    font-size: 20px;
+    line-height: 45px;
+    height: 45px;
+    padding-left: 10px;
+    margin-bottom: 8px
+}
+
+@media (max-width: 767px) {
+    .sign_up_form .input_email {
+        width: 200px
+    }
+}
+
+.sign_up_form .btn-red {
+    padding: 15px;
+    font-size: 16px;
+    margin-bottom: 8px
+}

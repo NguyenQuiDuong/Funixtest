@@ -1,0 +1,72 @@
+<?php $this->headLink()->prependStylesheet('/css/codementor/new-ea.css') ?>
+<div id="inner-body">
+    <div class="customizeContainer">
+        <center>
+            <div class="module">
+                <h1 class="title">
+                    Become a Codementor
+                </h1>
+                <p class="subtitle">
+                    Become a mentor for the next wave of makers and get paid while making an impact.
+                    <a class="learn-more" href="#" ng-click="learnMore()">
+                        Learn more
+                    </a>
+                </p>
+                <div class="session">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a class="linkedIn signUpBtn" href="/auth/linkedin">
+                                <img class="linkedIcon" src="/assets/applicants/linkedin-icon.png">
+                                <div class="btnWord">Apply with LinkedIn</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <a class="gitHub signUpBtn" href="">
+                                <img class="gitHubIcon" src="/assets/applicants/github-icon.png">
+                                <div class="btnWord">Apply with GitHub</div>
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="submitForm">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <div class="emailForm">
+                                    <?php
+                                    $form = $this->form;
+                                    $form->prepare();
+                                    $form->setAttributes(array(
+                                        'class' => 'ng-pristine ng-valid'
+                                    ));
+                                    echo $this->form()->openTag($form);
+                                    echo $this->formelement($form->get('name')->setAttributes(array(
+                                        'class' =>  'inputBox',
+                                        'placeholder'   =>  'Tên',
+                                    )));
+                                    echo $this->formelement($form->get('email')->setAttributes(array(
+                                        'class' =>  'inputBox',
+                                        'placeholder'   =>  'Email',
+                                    )));
+                                    echo $this->formelement($form->get('submit')->setAttributes(array(
+                                        'class' =>  'btn btn-red submitBtn',
+
+                                    )));
+                                    echo $this->form()->closeTag();
+                                    ?>
+<!--                                    <form action="/expert/apply" method="post" class="ng-pristine ng-valid">-->
+<!---->
+<!--                                        <input class="inputBox" name="name" placeholder="Name" required="true" type="text">-->
+<!--                                        <input class="inputBox" name="email" placeholder="Email" required="true" type="email">-->
+<!--                                        <input class="btn btn-red submitBtn" type="submit" value="Apply">-->
+<!--                                    </form>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </center>
+    </div>
+</div>

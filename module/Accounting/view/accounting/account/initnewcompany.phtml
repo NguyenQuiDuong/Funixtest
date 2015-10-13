@@ -1,0 +1,17 @@
+<?php
+$this->headTitle($this->escapeHtml($this->translate("Khởi tạo tài khoản cho công ty mới")));
+?>
+<ul class="breadcrumb">
+	<li><a href="/accounting"><i class="fa fa-home"></i></a></li>
+	<li><a href="/accounting/account">kế toán</a></li>
+	<li class="active">Khởi tạo tài khoản cho công ty mới</li>
+</ul>
+<div id='page-idea-add'>
+
+    <div class="main-header">
+		<h2><?= $this->translate('Khởi tạo tài khoản cho công ty mới') ?></h2>
+		<em>Các trường có dấu * là bắt buộc phải nhập</em>
+	</div>
+    <?= $this->partial('partial/formInput', array('form' => $this->form)); ?>
+
+</div>

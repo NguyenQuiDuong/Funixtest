@@ -1,0 +1,40 @@
+<?php
+$this->headTitle($this->escapeHtml($this->translate("Danh sách lí do")));
+$this->headScript()->appendFile('/min/f=/tp/v1/js/system/tool/fastupdateroleid.js');
+?>
+<div class="alert alert-info">
+chọn doanh nghiệp rồi -> phòng ban -> quyền -> bấm tìm kiếm -> hệ thống sẽ load ra các nhân viên chưa dc gắn quyền.
+<br/>
+Bấm gắn quyền -> sẽ gắn các nhân viên trong danh sách với quyền dc chọn
+</div>
+<div>
+<div class="col-md-2">
+    <select class="form-control" id="companyId">
+        <option value="">- Công ty -</option>
+        <?php if($this->companies){
+        	foreach ($this->companies as $companyId=>$companyName){
+        		echo '<option value="'.$companyId.'">'.$companyName.'</option>';
+        	}
+        }?>
+    </select>
+</div>
+<div class="col-md-2">
+    <select class="form-control" id="departmentId">
+        <option value="">- Phòng ban -</option>
+    </select>
+</div>
+<div class="col-md-2">
+    <select class="form-control" id="roleId">
+        <option value="">- Quyền -</option>
+    </select>
+</div>
+<div class="pull-left">
+    <button id="search" class="btn btn-primary" style="margin-right: 10px;">Tìm kiếm</button>
+    <button id="math" class="btn btn-danger">thực hiện</button>
+</div>
+</div>
+<div>
+ID nhân viên - mã nhân viên - tên nhân viên - tk đăng nhập
+</div>
+<div id="data-area">
+</div>

@@ -1,0 +1,77 @@
+<?php
+$this->headTitle($this->escapeHtml($this->translate("Đăng kí")));
+$this->headLink()->prependStylesheet('/css/style-sign-in.css');
+?>
+<div class='topBlock'>
+	<center>
+		<div class='customizeContainer'>
+			<div class='module'>
+				<h1 class='title'>
+					Sign in
+				</h1>
+
+				<div class='session'>
+					<div class='row-fluid'>
+						<div class='span12'>
+
+							<?php
+							$form  = $this->form;
+							$form->setAttributes([
+								'method'	=>	'Post',
+								'action'	=>	'/user/signup'
+							]);
+							$form->prepare();
+
+							echo $this->form()->openTag($form);
+							echo $this->formelement($form->get('username')->setAttributes(array(
+								'class'			=>	'inputName',
+								'autofocus'		=>	'autofocus',
+								'placeholder'	=>	'Tên đăng nhập',
+							)));
+							echo $this->formelementerrors($form->get('username'),[
+								'class'	=>	'center alert alert-error flash-message topAlert'
+							]);
+							echo $this->formelement($form->get('email')->setAttributes(array(
+								'class'			=>	'inputName',
+								'autofocus'		=>	'autofocus',
+								'placeholder'	=>	'Email',
+							)));
+							echo $this->formelementerrors($form->get('email'),[
+								'class'	=>	'center alert alert-error flash-message topAlert'
+							]);
+							echo $this->formelement($form->get('password')->setAttributes(array(
+								'class'		=>	'inputPassword',
+								'autofocus'	=>	'autofocus',
+								'placeholder'	=>	'Mật khẩu'
+							)));
+							echo $this->formelementerrors($form->get('password'),[
+								'class'	=>	'center alert alert-error flash-message topAlert'
+							]);
+							echo $this->formelement($form->get('password2')->setAttributes(array(
+								'class'		=>	'inputPassword',
+								'autofocus'	=>	'autofocus',
+								'placeholder'	=>	'Xác nhận mật khẩu'
+							)));
+							echo $this->formelementerrors($form->get('password2'),[
+								'class'	=>	'center alert alert-error flash-message topAlert'
+							]);
+							echo '<div class="sharedTitle">
+								<a class="sharedTitle" href="/user/signup">Với việc đăng kí, tức là bạn đã đọc và đồng ý với các điều khoản của chúng tôi</a>
+							</div>';
+							echo $this->formelement($form->get('submit')->setAttributes(array(
+								'class' =>  'btn btn-primary submitBtn',
+
+							)));
+							echo $this->form()->closeTag();
+							?>
+
+							<!--							<div class='sharedTitle'>-->
+							<!--								<a class="sharedTitle" href="/users/reset">Forgot your password?</a>-->
+							<!--							</div>-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</center>
+</div>

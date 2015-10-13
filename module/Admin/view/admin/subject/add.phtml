@@ -1,0 +1,15 @@
+<ul class="breadcrumb">
+	<li><a href="/admin/subject"><i class="fa fa-home"></i></a></li>
+	<li class="active">Thêm môn học</li>
+</ul>
+<div id='page-idea-add'>
+    <?php
+			$this->headTitle ( $this->escapeHtml ( $this->translate ( "Thêm môn học" ) ) );
+				?>
+    <div class="main-header">
+		<h2><?= $this->translate('Thêm môn học') ?></h2>
+		<em>Các trường có dấu * là bắt buộc phải nhập</em>
+	</div>
+    <?= $this->partial('partial/formInput', array('form' => $this->form)); ?>
+    
+</div>

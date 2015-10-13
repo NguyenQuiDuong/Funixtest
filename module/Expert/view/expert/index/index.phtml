@@ -1,0 +1,109 @@
+<?php
+$this->headLink()->prependStylesheet('/css/home/directory_new_for_clients.css');
+$subjectsCategory = $this->subjects;
+?>
+<div class="topBlock">
+    <div class="customizeContainer">
+        <div class="row-fluid">
+            <div class="span10 offset1 text-center">
+                <h1 class="h1Title">Codementor Software Expert Help</h1>
+                <p class="h1Description">Get instant 1:1 help from expert developers on Codementor.
+                    Experts on Codementor include book authors, creators of
+                    popular open source libraries, programming tutors, and engineers at well-known
+                    tech companies.</p>
+                <a class="actionLink" data-target="#signup-modal" data-toggle="modal" role="button">
+                    Get Help Now
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="breadcrumb">
+    <div class="customizeContainer">
+        <div class="row-fluid">
+            <div class="span12">
+                <div :xmlns:v="http://rdf.data-vocabulary.org/#" class="innerBreadcrumb">
+<span ng-hide="loaded" typeof="v:Breadcrumb">
+<span class="lastLink" typeof="v:Breadcrumb">
+Expert Mentors
+</span>
+</span>
+                    <!-- ngIf: loaded -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="searchBlock">
+    <div class="customizeContainer">
+        <div class="row-fluid">
+            <div class="span9">
+                <div class="searchBarContent">
+                    <div class="control-group text required question_category_names tagInput ng-scope" ng-controller="CategoryCtrl as cc" ng-init="cc.setDefaultRecommand(['ruby-on-rails','javascript','php','python','ios','android']);max=5;cc.initTags([])" ng-keyup="detectSubmit($event)">
+                        <div class="controls" ng-class="{requiredWarning:requiredWarning}">
+                            <tags-input max-tags="100" min-length="1" ng-model="tags" on-tag-added="cc.onAddTag($tag)" on-tag-removed="cc.onRemoveTag($tag)" placeholder="Type category name (eg. JavaScript)" class="ng-pristine ng-untouched ng-valid ng-isolate-scope ng-valid-max-tags ng-valid-min-tags ng-valid-leftover-text"><div class="host" tabindex="-1" ng-click="eventHandlers.host.click()" ti-transclude-append=""><div class="tags" ng-class="{focused: hasFocus}"><ul class="tag-list"><!-- ngRepeat: tag in tagList.items track by track(tag) --></ul><input class="input ng-pristine ng-untouched ng-valid" autocomplete="off" ng-model="newTag.text" ng-change="eventHandlers.input.change(newTag.text)" ng-keydown="eventHandlers.input.keydown($event)" ng-focus="eventHandlers.input.focus($event)" ng-blur="eventHandlers.input.blur($event)" ng-paste="eventHandlers.input.paste($event)" ng-trim="false" ng-class="{'invalid-tag': newTag.invalid}" ng-disabled="disabled" ti-bind-attrs="{type: options.type, placeholder: options.placeholder, tabindex: options.tabindex, spellcheck: options.spellcheck}" ti-autosize="" type="text" placeholder="Type category name (eg. JavaScript)" spellcheck="true" style="width: 243px;"><span class="input" style="visibility: hidden; width: auto; white-space: pre; display: none;">Type category name (eg. JavaScript)</span></div>
+                                    <auto-complete min-length="1" source="cc.loadTags($query)" class="ng-scope ng-isolate-scope"><!-- ngIf: suggestionList.visible --></auto-complete>
+                                </div></tags-input>
+                        </div>
+                        <!-- ngRepeat: tag in tags -->
+                    </div>
+                </div>
+                <div class="searchButton" ng-click="searchAlgolia(true)">
+                    Search
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="resultBlock">
+    <div class="customizeContainer">
+    <div class="switchBlock">
+    <div class="row-fluid">
+        <?php foreach($subjectsCategory as $category=>$subjects){ ?>
+            <div class="span4">
+            <div class="topicBlock">
+                <a class="link" href="/experts/web-programming">
+                    <center>
+                        <img alt="<?=explode('-',$category)[1]?>" class="imgBlock" src="/images/topic/web-programming.png">
+                        <span class="titleBlock"><?=explode('-',$category)[1]?></span>
+                    </center>
+                </a>
+
+                <div class="moreLink">
+                    <?php
+                    $count = 0;
+                    foreach($subjects as $subject){
+                        $count++;
+                        if($count == 1){
+                            ?>
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <img class="catImg" src="/images/experts/ruby-expert-help.png">
+                                <a class="catLink" href="/experts/index/view?id=<?=$subject['id'] ?>">
+                                    <?=$subject['name']?>
+                                </a>
+                            </div>
+                        <?php
+                        }elseif($count == 2) {
+                            $count = 0;
+                            ?>
+                            <div class="span6">
+                                <img class="catImg" src="/images/experts/ruby-expert-help.png">
+                                <a class="catLink" href="/experts/index/view?id=<?=$subject['id'] ?>">
+                                    <?= $subject['name'] ?>
+                                </a>
+                            </div>
+                            </div>
+                            <?php
+                        }
+                        ?>
+
+                        <?php } ?>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
+</div>
+</div>

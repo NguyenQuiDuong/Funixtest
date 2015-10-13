@@ -1,0 +1,522 @@
+.menteeProfile .profileImageWrapper {
+  width: 120px;
+  height: 120px
+}
+
+.menteeProfile .profileImageWrapper:hover .textOnHover {
+  opacity: 1
+}
+
+.menteeProfile .profileImageWrapper .imageHover {
+  text-decoration: none
+}
+
+.menteeProfile .profileImageWrapper .textOnHover {
+  position: relative;
+  left: 3px;
+  opacity: 0;
+  background-color: #666;
+  color: white;
+  bottom: 60px;
+  line-height: 30px;
+  height: 51px;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+  padding-top: 7px;
+  text-decoration: none
+}
+
+.menteeProfile .editorText {
+  cursor: pointer;
+  margin-left: 5px;
+  color: #073648
+}
+
+.menteeProfile .saveButton {
+  padding: 3px 10px;
+  border: none;
+  font-size: 10px;
+  border-radius: 13px;
+  color: #eee
+}
+
+.menteeProfile .saveButton:hover {
+  color: #fff;
+  text-decoration: none
+}
+
+.menteeProfile .cancelButton {
+  text-transform: uppercase;
+  font-weight: normal;
+  color: #999;
+  font-size: 10px;
+  color: #1A4360
+}
+
+.menteeProfile .cancelButton:hover {
+  color: #666;
+  text-decoration: none
+}
+
+.menteeProfile .whyUse li {
+  padding-top: 5px;
+  padding-button: 5px
+}
+
+.menteeProfile .whyUse li input {
+  margin: 0px
+}
+
+.menteeProfile .whyUse .other {
+  line-height: 30px
+}
+
+.menteeProfile .personalInfoPart {
+  background-color: #36B1BF;
+  padding: 50px 0px
+}
+
+.menteeProfile .menteeImage {
+  width: 120px;
+  height: 120px;
+  border: 3px solid #fff
+}
+
+.menteeProfile .nameBlock {
+  height: 40px;
+  display: block
+}
+
+@media (max-width: 767px) {
+  .menteeProfile .nameBlock {
+    text-align: center
+  }
+}
+
+.menteeProfile .menteeName {
+  font-size: 26px;
+  margin: 0px;
+  -webkit-font-smoothing: subpixel-antialiased;
+  color: #fff
+}
+
+.menteeProfile .timezone {
+  font-size: 14px;
+  color: #eee;
+  margin: 10px 0px
+}
+
+@media (max-width: 767px) {
+  .menteeProfile .timezone {
+    text-align: center
+  }
+}
+
+.menteeProfile .needCategories .needCatTitle {
+  color: #eee;
+  margin: 10px 0px
+}
+
+@media (max-width: 767px) {
+  .menteeProfile .needCategories {
+    text-align: center
+  }
+}
+
+.menteeProfile .needCategories .needCatContent {
+  margin-left: 20px
+}
+
+@media (max-width: 767px) {
+  .menteeProfile .needCategories .needCatContent {
+    margin-left: 0px
+  }
+}
+
+.menteeProfile .customizeBadge {
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  margin-right: 3px;
+  margin-bottom: 3px
+}
+
+@media (max-width: 480px) {
+  .menteeProfile .customizeBadge {
+    margin-right: 8px;
+    margin-bottom: 8px
+  }
+}
+
+.menteeProfile .menuPart {
+  background-color: #fff;
+  border-bottom: 1px solid #E7E9EB
+}
+
+.menteeProfile .menuTab {
+  display: inline-block;
+  margin-left: 15px;
+  font-weight: 300;
+  cursor: pointer;
+  padding: 0px 15px
+}
+
+.menteeProfile .menuTab .menuLink {
+  color: #999;
+  line-height: 50px;
+  text-decoration: none;
+  font-size: 16px
+}
+
+.menteeProfile .menuTab .menuLink:hover {
+  color: #111
+}
+
+.menteeProfile .aboutMe {
+  margin-left: 10px
+}
+
+@media (max-width: 767px) {
+  .menteeProfile .aboutMe {
+    display: none
+  }
+}
+
+.menteeProfile .menuTab.active {
+  color: #111;
+  border-bottom: 4px solid #09455D
+}
+
+.menteeProfile .menuTab.active .menuLink {
+  color: #111
+}
+
+.menteeProfile .contentPart {
+  padding-bottom: 30px
+}
+
+.menteeProfile .block {
+  padding: 28px 14px 0px
+}
+
+.menteeProfile .use_text {
+  margin-bottom: 0px
+}
+
+.menteeProfile .blockDecoration {
+  webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 14px 28px;
+  border: 1px solid #eee;
+  background-color: #fff;
+  margin-top: 25px
+}
+
+.menteeProfile .subTitle {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0;
+  color: #333;
+  line-height: 20px;
+  margin-bottom: 28px
+}
+
+.menteeProfile .request {
+  border-bottom: 1px solid #eee;
+  padding: 20px 0px;
+  position: relative
+}
+
+.menteeProfile .request:last-child {
+  border-bottom: none
+}
+
+.menteeProfile .requestSign {
+  font-weight: bold;
+  position: absolute;
+  right: -20px;
+  top: 20px;
+  text-transform: uppercase;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2)
+}
+
+.menteeProfile .requestSign .signText {
+  font-size: 10px;
+  position: absolute;
+  left: -38px;
+  bottom: -38px;
+  width: 78px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-weight: 700
+}
+
+.menteeProfile .solved {
+  border-bottom: 40px solid #999
+}
+
+.menteeProfile .cancelled {
+  border-bottom: 40px solid red
+}
+
+.menteeProfile .open {
+  border-bottom: 40px solid green
+}
+
+.menteeProfile .requestDetail {
+  margin-right: 100px
+}
+
+.menteeProfile .requestDetail .qTitle {
+  font-size: 1.3em;
+  font-weight: bold;
+  line-height: 1.5
+}
+
+.menteeProfile .rule {
+  text-transform: uppercase;
+  color: #ccc
+}
+
+.menteeProfile .ruleContent {
+  color: #666;
+  font-weight: 300
+}
+
+.menteeProfile .tags {
+  color: #9BB6BF;
+  font-size: 14px;
+  margin-right: 12px
+}
+
+.menteeProfile .rightSideBar {
+  position: relative
+}
+
+.menteeProfile .rightSideBarWapper {
+  position: absolute;
+  width: 332px;
+  z-index: 4;
+  top: 37px
+}
+
+@media (max-width: 1180px) {
+  .menteeProfile .rightSideBarWapper {
+    width: 300px
+  }
+}
+
+@media (max-width: 1000px) {
+  .menteeProfile .rightSideBarWapper {
+    width: 250px
+  }
+}
+
+@media (max-width: 767px) {
+  .menteeProfile .rightSideBarWapper {
+    margin-top: 10px;
+    position: relative;
+    right: auto;
+    width: auto
+  }
+
+  .menteeProfile .rightSideBarWapper.help-listing {
+    top: 0px !important;
+    position: relative !important
+  }
+}
+
+.menteeProfile .rightSideBarWapper .dropdown-btn {
+  margin-top: 20px
+}
+
+.menteeProfile .rightSideBarWapper .actionCard > div {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 30px;
+  text-align: center
+}
+
+.menteeProfile .rightSideBarWapper .actionCard .topCard {
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  background-color: #fff;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15)
+}
+
+.menteeProfile .rightSideBarWapper .actionCard .topCard .img-circle {
+  width: 70px
+}
+
+.menteeProfile .rightSideBarWapper .actionCard .topCard .display-name {
+  display: block;
+  margin: 15px 0 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #444
+}
+
+.menteeProfile .rightSideBarWapper .actionCard .btn {
+  margin-top: 12px;
+  box-sizing: border-box;
+  width: 100%;
+  white-space: normal;
+  font-weight: bold
+}
+
+.menteeProfile .rightSideBarWapper .actionCard .dropdown-btn .btn:active {
+  background: #ddd
+}
+
+.menteeProfile .rightSideBarWapper .actionCard .messageBtn {
+  width: 100%
+}
+
+.menteeProfile .rightSideBarWapper .restInfo {
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15)
+}
+
+.menteeProfile .rightSideBarWapper .restInfo > div {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 20px;
+  background-color: #f8f8f8;
+  text-align: center
+}
+
+.menteeProfile .rightSideBarWapper .restInfo .infoDetail {
+  color: #000
+}
+
+.menteeProfile .rightSideBarWapper .restInfo .rate {
+  color: #000
+}
+
+.menteeProfile .rightSideBarWapper .restInfo .wide .socialIcon {
+  background-color: #f8f8f8
+}
+
+.menteeProfile .rightSideBarWapper .restInfo .expLevel {
+  margin-bottom: 5px
+}
+
+.menteeProfile .rightSideBarWapper .restInfo .expLevel .formSection .buttons {
+  margin-top: 10px
+}
+
+.menteeProfile .rightSideBarWapper .restInfo .expLevel .formSection select {
+  margin-top: 10px
+}
+
+.menteeProfile #review .review-row {
+  display: flex;
+  display: -webkit-flex;
+  padding: 0px 15px
+}
+
+.menteeProfile #review .avatar {
+  width: 50px;
+  height: 50px
+}
+
+.menteeProfile #review .customizeAvatar {
+  border-radius: 50%;
+  background-color: #16bb8e;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px;
+  line-height: 50px;
+  border: 1px solid #16bb8e;
+  width: 50px;
+  height: 50px;
+  font-weight: bold;
+  color: #fff
+}
+
+.menteeProfile #review .well.reviewModule {
+  flex: 1;
+  -webkit-flex: 1;
+  margin-left: 15px;
+  padding: 0px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  position: relative
+}
+
+.menteeProfile #review .well.reviewModule .reviewerName {
+  padding: 0px 20px;
+  font-size: 1.1em;
+  line-height: 2;
+  background-color: #f8f8f8;
+  border-bottom-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-bottom-left-radius: 3px;
+  color: #5f6366
+}
+
+.menteeProfile #review .well.reviewModule .content {
+  margin: 20px 20px 20px;
+  font-size: 1.1em;
+  line-height: 1.5;
+  color: #5f6366
+}
+
+.menteeProfile #review .well.reviewModule:before {
+  top: 18px;
+  left: -14px;
+  height: 0;
+  width: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 7.5px;
+  border-right-color: #fff;
+  z-index: 2;
+  display: block;
+  content: " ";
+  position: absolute
+}
+
+.menteeProfile #review .well.reviewModule:after {
+  top: 17px;
+  left: -16px;
+  z-index: 1;
+  height: 0;
+  width: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 8.5px;
+  border-right-color: silver;
+  display: block;
+  content: " ";
+  position: absolute
+}
+
+footer {
+  margin-top: 0px
+}

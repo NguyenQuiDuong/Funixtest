@@ -1,0 +1,86 @@
+<style>
+.top-bar .notifications .general .dropdown-menu {
+	left: -250px !important
+}
+
+.top-bar .notifications .inbox .dropdown-menu {
+	left: -250px !important
+}
+
+.dropdown-menu li {
+	position: relative
+}
+
+.timestamp {
+	position: absolute;
+	bottom: 0px;
+	right: 5px
+}
+</style>
+<div class="container">
+	<div class="row">
+		<!-- logo -->
+		<div class="col-md-2 logo">
+			<a href="/"> <img alt="funix" src="/images/funix-logo.png"
+				style="height: 30px">
+			</a>
+			<!-- responsive top menu bar icon -->
+			<span class="hidden-md hidden-lg topMenuToggle"><i class="fa fa-bars"></i></span>
+		</div>
+		<!-- end logo -->
+		<?php if($this->user()->hasIdentity()) { ?>
+		<div class="col-md-10">
+			<div class="row">
+				<div class="col-md-9 topMenu">
+				<ul class='nav nav-tabs'>
+				    <li><a href="/admin/user">Người dùng</a></li>
+				    <li><a href="/admin/subject">Môn học</a></li>
+					<li><a href="/admin/expert">Mentor</a></li>
+				</ul>
+				</div>
+				<div class="col-md-3 topUserBar">
+					<div class="top-bar-right">
+						<!-- responsive menu bar icon -->
+						<span class="hidden-md hidden-lg main-nav-toggle"><i
+							class="fa fa-list-ul"></i></span>
+						<!-- end responsive menu bar icon -->
+
+						<!-- logged user and the menu -->
+						<div class="logged-user">
+							<div class="btn-group">
+								<a data-toggle="dropdown" class="btn btn-link dropdown-toggle"
+									href="#"> <!-- 									<img src="/images/nhanh_16x16.png"> -->
+                                    <?php
+                                    if($this->user()->getUser()->getUsername())
+                                    {
+									    echo '<span class="name">'. $this->user()->getUser()->getUsername() .'</span> <span class="caret"></span>';
+                                    }elseif($this->user()->getUser()->getFullname())
+                                    {
+                                        echo '<span class="name">'. $this->user()->getUser()->getFullname() .'</span> <span class="caret"></span>';
+                                    }elseif($this->user()->getUser()->getEmail())
+                                    {
+                                        echo '<span class="name">'. $this->user()->getUser()->getEmail() .'</span> <span class="caret"></span>';
+                                    }
+                                    ?>
+								</a>
+								<ul role="menu" class="dropdown-menu">
+									<li><a href="/profile"> <i class="fa fa-user"></i> <span
+											class="text"><?= $this->translate('Thông tin tài khoản'); ?></span>
+									</a></li>
+									<li><a href="/user/signout"> <i class="fa fa-power-off"></i> <span
+											class="text"><?= $this->translate('Thoát'); ?></span>
+									</a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- end logged user and the menu -->
+					</div>
+					<!-- /top-bar-right -->
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<?php } ?>
+	</div>
+	<!-- /row -->
+</div>

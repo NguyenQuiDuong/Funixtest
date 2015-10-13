@@ -1,0 +1,158 @@
+<?php
+$subjectCategories = array();
+    $subjectCategories = $this->user()->rendermenu();
+?>
+<div class='navbar menu_new_v2' id='main-header' style='margin-bottom:0px;'>
+    <div class='navbar-inner'>
+        <div class='container'>
+            <div class='btn btn-navbar' data-target='.nav-collapse' data-toggle='collapse'>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+            </div>
+            <a class='brand' href='/'>
+                <img alt="Funix" src="/images/funix-logo.png"/>
+            </a>
+            <!-- Unsign Up User -->
+            <div class='nav-collapse collapse'>
+                <ul class='nav'>
+                    <!-- Expert Part / -->
+                    <li class='showMobile'>
+                        <a href='/experts'>Học với chuyên gia</a>
+                    </li>
+                    <li class='learnTopMenu hideMobile'>
+                        <a class='learnTopLink' href='/experts'>
+                            Học với chuyên gia
+                            <b class='caret'></b>
+                        </a>
+                        <ul aria-labelledby='dropdownMenu' class='learnSecondMenu expert-second-menu' role='menu'>
+                            <!-- Get all exist category obj -->
+                            <!-- Get all existing category ids -->
+                            <?php foreach($subjectCategories as $category=>$subjects){ ?>
+                            <li class='item subMenuItem'>
+                                <a class='sublink secondItem' href='/experts/index/list?id=<?= explode('-',$category)[0] ?>'
+                                   tabindex='-1'>
+                                    <?= explode('-',$category)[1] ?>
+                                </a>
+
+                                <div class='learnThirdMenu expert-third-menu'>
+                                    <div class='row-fluid'>
+                                        <div class='span12'>
+                                            <div class='header-item'>
+                                                <a class='topic-btn'
+                                                   href='/experts/index/list?id=<?= explode('-',$category)[0] ?>'
+                                                   tabindex='-1'>
+                                                    <?= explode('-',$category)[1] ?>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    $count = 0;
+                                    foreach($subjects as $subject){
+                                        $count++;
+                                        if($count == 1){
+                                            ?>
+                                            <div class="row-fluid">
+                                                <div class='span6'>
+                                                    <div class='item subMenuItem'>
+                                                        <a class='thirdlink' href='/experts/index/view?id=<?= $subject['id']?>'
+                                                           tabindex='-1'>
+                                                            <?= $subject['name']?>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            <?php
+                                        }elseif($count == 2){
+                                                $count = 0;
+                                            ?>
+                                                <div class='span6'>
+                                                    <div class='item subMenuItem'>
+                                                        <a class='thirdlink' href='/experts/index/view?id=<?= $subject['id']?>'
+                                                           tabindex='-1'>
+                                                            <?= $subject['name']?>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <?php }else{
+                                            ?>
+                                            <div class='span6'>
+                                                <div class='item subMenuItem'>
+                                                    <a class='thirdlink' href='/experts/index/view?id=<?= $subject['id']?>'
+                                                       tabindex='-1'>
+                                                        <?= $subject['name']?>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }
+
+                                     }?>
+                                </div>
+                            </li>
+                            <?php }?>
+                            <!-- Get all existing category ids -->
+                        </ul>
+                    </li>
+                    <!-- Free Resources Part / -->
+                    <li class='hideTablet'>
+                        <a href='/experts/index/apply'>Trở thành codementor</a>
+                    </li>
+                </ul>
+                <ul class='nav pull-right'>
+                <?php if ($this->user()->getIdentity()){
+                    ?>
+                      <li class="hideMobile">
+                          <div class="chatNotification pull-right"><a class="cm-notify" href="#" ><i class="icon-comments"></i><i class="count ng-binding ng-hide" >0</i></a><div class="notification-list list-group ng-hide" ><div class="list-group-heading clearfix"><h3 class="list-group-title pull-left">Inbox<img ng-src="/assets/ajax-loader.gif"  src="/assets/ajax-loader.gif" class="ng-hide"></h3></div><div class="list-group-body"><!-- ngRepeat: noti in chatNoti.notifications --><div class="empty-notification list-group-item read center" ng-show="chatNoti.notifications.length==0">No notifications.</div></div><div class="list-group-footer center clearfix"></div></div></div>
+                      </li>
+                      <li class="hideMobile">
+                          <div class="inboxNotification pull-right"><a class="cm-notify" ><i class="icon-bell-alt"></i><i class="count ng-binding ng-hide" ng-hide="count<=0 || hideCount">0</i></a><div class="notification-list list-group ng-hide" ng-show="show"><div class="list-group-heading clearfix"><h3 class="list-group-title pull-left">Notifications<img ng-src="/assets/ajax-loader.gif" ng-show="loading" src="/assets/ajax-loader.gif" class="ng-hide"></h3><div class="action pull-right"><a href="#" ng-click="markAllAsRead()">Mark as Read</a></div></div><div class="list-group-body" style="max-height: 1px;"><!-- ngRepeat: noti in notifications --><div class="empty-notification list-group-item read center" ng-show="notifications.length==0">No notifications.</div></div><div class="list-group-footer center clearfix"><a href="/notifications">See All</a></div></div></div>
+                      </li>
+                      <!-- Gravatar Dropdown Will be hidden when hambuger -->
+                      <li class="hideMobile">
+                           <div class="inboxNotification"><a class="cm-notify"><?= $this->user()->getUser()->getUserName()?></a></div>
+                      </li>
+                      <li class="dropdown hideMobile pull-right">
+                          <a class="dropdown-toggle profile-avatar ng-scope" data-toggle="dropdown" href="#" ng-class="{'show':profileMenu}" ng-controller="headerProfileAvatarCtrl" ng-init="init('https://www.gravatar.com/avatar/e396607e917deb8ab2306669cbede5f9?d=mm&amp;s=200')">
+                              <img ng-src="" src="https://www.gravatar.com/avatar/e396607e917deb8ab2306669cbede5f9?d=mm&amp;s=200">
+                          </a>
+                          <ul class="dropdown-menu profile-avatar-menu">
+                          <?php if($this->user()->isAdmin()){?>
+                              <li class="item">
+                                  <a href="/admin">
+                                      <i class="icon-credit-card"></i>
+                                      Admin
+                                  </a>
+                              </li>
+                              <?php }?>
+                              <li class="item">
+                                  <a clear-storage="" rel="nofollow" href="/user/signout"><i class="icon-signout"></i>
+                                      Đăng xuất
+                                  </a></li>
+                          </ul>
+                      <!-- Will be shown when hambuger -->
+                      <li class="showMobile">
+                          <a href="/users/profile_setting">
+                              <i class="icon-gear"></i>
+                              Cài đặt
+                          </a>
+                      </li>
+                      <li class="showMobile">
+                          <a clear-storage="" rel="nofollow" href="/user/signout"><i class="icon-signout"></i>
+                              Đăng xuất
+                          </a></li>
+                      </li>
+                <?php }else{?>
+                      <li>
+                          <a href="/user/signup" class="highlight red-btn"  id="headerSignUpBtn">Đăng kí</a>
+                      </li>
+                      <li>
+                          <a href='/user/signin'>Đăng nhập</a>
+                      </li>
+                <?php }?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

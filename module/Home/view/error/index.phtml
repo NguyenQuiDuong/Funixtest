@@ -1,0 +1,79 @@
+<?php
+	$this->headtitle('Lỗi - erp.nhanh.vn');
+?>
+<h1><?= $this->translate('Hệ thống xảy ra lỗi! Xin vui lòng thử lại sau.') ?></h1>
+<?php
+	if(getenv('APPLICATION_ENV') == 'production') {
+		/* @var $serviceUser \User\Service\User */
+		$serviceUser = $this->app()->slGet('User\Service\User');
+
+		$myfile = fopen(BASE_PATH . "/data/logs/_erp_err.log", "a");
+		fwrite($myfile, date('Y-m-d H:i:s') .'  '. $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "\n" . "\n");
+		fwrite($myfile, getenv('HTTP_USER_AGENT') . "\n");
+		fwrite($myfile, 'UserId: ' . $serviceUser->getIdentity() . "\n");
+		if(isset($this->exception) && $this->exception instanceof Exception) {
+			fwrite($myfile, $this->exception->getMessage() . "\n");
+			fwrite($myfile, $this->exception->getFile() .' - Line: '. $this->exception->getLine() . "\n");
+			fwrite($myfile, $this->exception->getTraceAsString());
+		}
+		fwrite($myfile, "\n\n\n");
+		fclose($myfile);
+	}
+?>
+<?php if (isset($this->display_exceptions) && $this->display_exceptions) { ?>
+<h2><?= $this->message ?></h2>
+<?php if(isset($this->exception) && $this->exception instanceof Exception) { ?>
+<hr/>
+<h2><?= $this->translate('Additional information') ?>:</h2>
+<h3><?= get_class($this->exception); ?></h3>
+<dl>
+    <dt><?= $this->translate('File') ?>:</dt>
+    <dd>
+        <pre class="prettyprint linenums"><?= $this->exception->getFile() ?>:<?= $this->exception->getLine() ?></pre>
+    </dd>
+    <dt><?= $this->translate('Message') ?>:</dt>
+    <dd>
+        <pre class="prettyprint linenums"><?= $this->exception->getMessage() ?></pre>
+    </dd>
+    <dt><?= $this->translate('Stack trace') ?>:</dt>
+    <dd>
+        <pre class="prettyprint linenums"><?= $this->exception->getTraceAsString() ?></pre>
+    </dd>
+</dl>
+<?php
+    $e = $this->exception->getPrevious();
+    if ($e) {
+?>
+<hr/>
+<h2><?= $this->translate('Previous exceptions') ?>:</h2>
+<ul class="unstyled">
+    <?php while($e) { ?>
+    <li>
+        <h3><?= get_class($e); ?></h3>
+        <dl>
+            <dt><?= $this->translate('File') ?>:</dt>
+            <dd>
+                <pre class="prettyprint linenums"><?= $e->getFile() ?>:<?= $e->getLine() ?></pre>
+            </dd>
+            <dt><?= $this->translate('Message') ?>:</dt>
+            <dd>
+                <pre class="prettyprint linenums"><?= $e->getMessage() ?></pre>
+            </dd>
+            <dt><?= $this->translate('Stack trace') ?>:</dt>
+            <dd>
+                <pre class="prettyprint linenums"><?= $e->getTraceAsString() ?></pre>
+            </dd>
+        </dl>
+    </li>
+    <?php
+        $e = $e->getPrevious();
+	}
+    ?>
+</ul>
+<?php } ?>
+
+<?php } ?>
+
+<h3><?= $this->translate('No Exception available') ?></h3>
+
+<?php } ?>

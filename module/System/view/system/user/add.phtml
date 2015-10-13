@@ -1,0 +1,16 @@
+<ul class="breadcrumb">
+	<li><a href="/"><i class="fa fa-home"></i></a></li>
+	<li><a href="/system/user/index">Danh sách người dùng</a></li>
+	<li class="active">Thêm người dùng</li>
+</ul>
+<div id='page-crm-contact-add'>
+<?php
+	$this->headTitle($this->escapeHtml($this->translate("Thêm người dùng")));
+	$this->headScript()->appendFile('/min/f=/tp/v1/js/system/user/add.js');
+?>
+	<div class="main-header">
+		<h2><?= $this->translate('Thêm người dùng')?></h2>
+		<em>Các trường có dấu * là bắt buộc phải nhập</em>
+	</div>
+	<?= $this->partial('partial/formInput', array('form' => $this->form)); ?>
+</div>

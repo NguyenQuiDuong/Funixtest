@@ -1,0 +1,24 @@
+<?php
+?>
+<table class="table">
+    <thead>
+        <tr>
+            <td>STT</td>
+            <th>Code</th>
+            <th>Office</th>
+            <th>Erp</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $index= 1;
+        foreach ($this->offices as $code=>$officeName){?>
+        <tr>
+            <td><?= $index++?></td>
+            <td><?= $code?></td>
+            <td><?= $officeName?></td>
+            <td><?= isset($this->erps[$code])?$this->erps[$code]:''?></td>
+        </tr>
+        <?php }?>
+    </tbody>
+</table>

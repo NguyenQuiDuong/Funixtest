@@ -1,0 +1,210 @@
+.customizeContainer {
+  margin-right: auto;
+  margin-left: auto
+}
+
+@media (min-width: 1200px) {
+  .customizeContainer {
+    width: 1170px
+  }
+}
+
+@media (max-width: 1199px) {
+  .customizeContainer {
+    width: 1170px
+  }
+}
+
+@media (max-width: 1180px) {
+  .customizeContainer {
+    width: 90%
+  }
+}
+
+@media (max-width: 979px) {
+  .customizeContainer {
+    width: 90%
+  }
+}
+
+@media (max-width: 767px) {
+  .customizeContainer {
+    width: 90%
+  }
+}
+
+.topBlock {
+  background: #f5f5f5;
+  padding: 30px 20px 80px;
+  min-height: 100vh;
+  box-sizing: border-box
+}
+
+.topBlock .module {
+  max-width: 350px
+}
+
+@media (max-width: 350px) {
+  .topBlock .module {
+    width: 100%
+  }
+}
+
+.topBlock .module_new {
+  width: 400px
+}
+
+@media (max-width: 400px) {
+  .topBlock .module_new {
+    width: 100%
+  }
+}
+
+.topBlock .logo {
+  width: 60px;
+  height: 60px
+}
+
+.topBlock .title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #073648;
+  word-break: break-all
+}
+
+.topBlock .session {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.05) 0 1px 3px 0;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 1px 3px 0;
+  border-top: 1px solid #eee;
+  border-left: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
+  border-bottom: 1px solid #e5e5e5;
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webket-border-adius: 2px
+}
+
+.topBlock .subTitle {
+  font-size: 14px;
+  font-weight: 300;
+  color: #333;
+  padding: 10px 0 0px
+}
+
+.topBlock .customizeLabel {
+  font-size: 12px;
+  padding-bottom: 4.5px;
+  padding-right: 12px;
+  padding-top: 6.5px;
+  height: 27px;
+  transition: border ease 0.4s;
+  display: block;
+  text-align: left;
+  width: 90%;
+  box-sizing: border-box;
+  color: #5f6366
+}
+
+.topBlock .inputFieldWithTitle {
+  box-sizing: border-box;
+  width: 90% !important;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webket-border-adius: 2px;
+  font-size: 14px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 4px;
+  height: 30px;
+  border: 1px #eee solid;
+  transition: border ease 0.4s;
+  text-align: left;
+  color: #555
+}
+
+.topBlock .inputErrorWithTitle {
+  font-size: 12px;
+  color: red;
+  padding-top: 4.5px;
+  padding-bottom: 6.5px;
+  padding-left: 0px;
+  padding-right: 12px;
+  text-align: left;
+  width: 90%;
+  box-sizing: border-box
+}
+
+.topBlock .inputName {
+  box-sizing: border-box;
+  width: 90%;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webket-border-adius: 2px;
+  font-size: 16px;
+  padding-bottom: 9.5px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 9.5px;
+  height: 40px;
+  margin-bottom: 20px
+}
+
+.topBlock .inputPassword {
+  box-sizing: border-box;
+  width: 90%;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webket-border-adius: 2px;
+  font-size: 16px;
+  padding-bottom: 9.5px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 9.5px;
+  height: 40px;
+  margin-bottom: 20px
+}
+
+.topBlock .inputError {
+  font-size: 16px;
+  color: red;
+  padding-bottom: 9.5px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-top: -15px;
+  text-align: left;
+  width: 90%;
+  box-sizing: border-box;
+  margin-bottom: 10px
+}
+
+.topBlock .tokenError {
+  font-size: 16px;
+  color: red;
+  margin-bottom: 10px
+}
+
+.topBlock #user_remember_me {
+  float: none;
+  margin-right: 5px;
+  line-height: 15px;
+  margin-top: 0px
+}
+
+.topBlock .submitBtn {
+  box-sizing: border-box;
+  width: 90%;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webket-border-adius: 2px
+}
+
+.topBlock .signUp {
+  margin-top: 10px
+}
+
+.topBlock .sharedTitle {
+  margin-top: 10px
+}

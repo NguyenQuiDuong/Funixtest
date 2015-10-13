@@ -1,0 +1,149 @@
+<?php
+/**
+ *
+ * @param \ZendX\DataGrid\Column $column
+ */
+if(!function_exists('createSortLink')){
+	function createSortLink($column, $view){
+		if(!$column->getOption('sortable')){
+			return $column->getContent();
+		}
+		$result = '<a href="';
+		$params =  $view->app()->getQueryParams();
+		$iconClass = 'fa-sort';
+		if(!isset($params['sort']) || $params['sort'] != $column->getName()){
+			$params['sort'] = $column->getName();
+			$params['dir'] = $column->getOption('defaultDir')?:'asc';
+		} else {
+			if(isset($params['dir']) && $params['dir']){
+				if($params['dir'] == 'desc'){
+					$params['dir'] = 'asc';
+					$iconClass = 'fa-sort-asc';
+				} else {
+					$params['dir'] = 'desc';
+					$iconClass = 'fa-sort-desc';
+				}
+			} else {
+				$params['dir'] = $column->getOption('defaultDir')?:'desc';
+			}
+		}
+		$result .= $view->app()->appendUriParams($params).'">';
+		$result .= '<i class="fa '.$iconClass.'"></i> ';
+		$result .= $column->getContent();
+		$result .= '</a>';
+		return $result;
+	}
+}
+/**
+ * @author VanCK
+ * @param \ZendX\DataGrid\Row $row
+ * @param bool $isHeader
+ */
+if(!function_exists('renderDgRow')){
+	function renderDgRow($row, $isHeader = false, $view)
+	{
+		$attrs = renderAttributes($row->getAttributes());
+		echo "<tr$attrs>";
+		foreach($row->getColumns() as $column) {
+			/* @var $column \ZendX\DataGrid\Column */
+			$attrs = renderAttributes($column->getAttributes());
+			echo $isHeader ? "<th$attrs>" : "<td$attrs>";
+			echo $isHeader ? createSortLink($column, $view) : $column->getContent();
+			echo $isHeader ? '</th>' : '</td>';
+		}
+		echo '</tr>';
+	}
+}
+
+
+/**
+ * @param string $attrs
+ * @return string
+ */
+if(!function_exists('renderAttributes')){
+	function renderAttributes($attrs = null)
+	{
+		$results = '';
+		if(is_array($attrs)) {
+			foreach ($attrs as $key => $value) {
+				$results .= " $key='$value'";
+			}
+		}
+		return $results;
+	}
+}
+/* @var $dg \ZendX\DataGrid\DataGrid */
+if(!($dg = $this->dataGrid)) {
+	return;
+}
+$class = 'table';
+if($dg->getAttribute('class')) {
+	$class .= ' '. $dg->getAttribute('class');
+} else {
+    $class .= ' table-bordered';
+}
+$dg->addAttributes(['class' => $class]);
+// $dg->addAttributes(['class' => 'table table-bordered']);
+
+$attrs = renderAttributes($dg->getAttributes());
+if($this->noWidget != true) {
+	echo '<div class="widget widget-table">';
+	echo '<div class="widget-header">';
+	echo '<h3><i class="fa fa-table"></i> '. $this->title .'</h3>';
+	if($this->widgetHeaderToolbar) {
+		echo '<div class="btn-group widget-header-toolbar">';
+		echo $this->widgetHeaderToolbar;
+		echo '</div>';
+	}
+
+	echo '</div>';
+	echo '<div class="dgContainer widget-content table-responsive">';
+}
+echo '<div class="row">';
+echo '<div class="col-md-6 dgButtons">';
+echo $this->topButtons;
+echo '</div>';
+if($dg->getDataSource() instanceof Zend\Paginator\Paginator) {
+echo '<div class="col-md-6 paginatorItem">';
+echo $this->paginationControl($dg->getDataSource(), 'Sliding', 'partial/paginatorItem');
+echo '</div>';
+}
+echo '<div style="clear: both;"></div>';
+echo '<br>';
+echo '</div>';
+
+echo "<table$attrs>";
+if(is_array($dg->getHeaders())) {
+	echo '<thead>';
+	foreach($dg->getHeaders() as $header) {
+		renderDgRow($header, true, $this);
+	}
+	echo '</thead>';
+}
+if(is_array($dg->getRows())) {
+	$bodyAttrs = renderAttributes($dg->getBodyAttributes());
+	echo "<tbody$bodyAttrs>";
+	foreach($dg->getRows() as $row) {
+		renderDgRow($row, false, $this);
+	}
+	echo '</tbody>';
+}
+echo '</table>';
+
+echo '<div class="row">';
+echo '<div class="col-md-6 dgButtons">';
+echo $this->bottomButtons;
+echo '</div>';
+
+	if($dg->getDataSource() instanceof Zend\Paginator\Paginator) {
+		echo '<div class="col-md-6 paginatorItem">';
+		echo $this->paginationControl($dg->getDataSource(), 'Sliding', 'partial/paginatorItem');
+		echo '</div>';
+	}
+echo '</div>';
+	if($this->noWidget != true) {
+
+
+    	echo '</div>';
+    	echo '</div>';
+    }

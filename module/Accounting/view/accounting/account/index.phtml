@@ -1,0 +1,63 @@
+
+
+<ul class="breadcrumb">
+	<li><a href="/accounting"><i class="fa fa-home"></i></a></li>
+	<li><a href="/accounting/account/index">Danh sách tài khoản kế toán</a></li>
+</ul>
+<div id='page-idea-contact'>
+    <?php
+    			$this->headScript ()->appendFile ( '/min/f=/tp/v1/js/accounting/account/del.js?02' );
+				$this->headTitle ( $this->escapeHtml ( $this->translate ( "tài khoản kế toán" ) ) );
+				echo '<div class="filterContainer">';
+				echo $this->partial ( 'partial/formFilter', [ 
+						'form' => $this->form 
+				] );
+				echo '</div>';
+
+					echo '</div>';
+					$dg = new \Accounting\DataGrid\Account ( [ 
+							'dataSource' => $this->paginator 
+					] );
+					echo $this->partial ( 'partial/dataGrid', [ 
+							'dataGrid' => $dg,
+							'title' => $this->translate ( "Danh sách tài khoản kế toán" ),
+							'topButtons' => '<a href="/accounting/account/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm tài khoản</a>' 
+					] );
+				
+				?>
+
+<!-- Dialog bootstrap -->
+<div id="delModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Thông báo</h4>
+			</div>
+			<div class="modal-body">
+			    <div class='alert alert-info alert-dismissable'>Xác nhận xóa tài khoản</div>
+			</div>
+			
+			<div class="modal-footer">
+			     <button type='button' class='btn btn-primary confirm'>Xác nhận</button>
+			     <button type='button' class='btn btn-default' data-dismiss='modal'>Đóng</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="alertModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Thông báo</h4>
+			</div>
+			<div class="modal-body"></div>		
+			<div class="modal-footer">
+			     <button type='button' class='btn btn-default reload' data-dismiss='modal'>Đóng</button>
+			</div>
+		</div>
+	</div>
+</div>

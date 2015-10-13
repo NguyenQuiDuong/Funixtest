@@ -1,0 +1,22 @@
+<?php
+	$this->headTitle($this->translate('Đồng bộ nhân sự bnc'));
+	$paginator = $this->paginator;
+	/*@var $paginator \Zend\Paginator\Paginator */
+?>
+<input type='hidden' id="redirectUri" value="<?= $this->redirectUri?>" />
+<input type='hidden' id="defaultRedirectUri" value="<?= $this->defaultRedirectUri?>" />
+Số employee tạo mới: <?= $this->totalEmployee?><br/>
+Số employee update mới: <?= $this->totalUpdate?><br/>
+
+<script type="text/javascript">
+	setTimeout(function(){
+		if(document.getElementById("redirectUri").value != "") {
+			window.location = document.getElementById("redirectUri").value;
+		} else if(document.getElementById("defaultRedirectUri").value != "") {
+			setTimeout(function(){
+				window.location = document.getElementById("defaultRedirectUri").value;
+			}, 600000);
+		}
+	}, 500);
+</script>
+<a href="<?= $this->defaultRedirectUri?>" class='lnk'>Restart [<?= $paginator->getCurrentPageNumber() .' / '. $paginator->count() ?>]</a><br><br>

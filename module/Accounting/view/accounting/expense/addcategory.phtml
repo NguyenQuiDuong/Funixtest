@@ -1,0 +1,17 @@
+<ul class="breadcrumb">
+	<li><a href="/accounting"><i class="fa fa-home"></i></a></li>
+	<li><a href="/accounting/expense/category">Khoản mục chi phí</a></li>
+	<li class="active">Thêm khoản mục</li>
+</ul>
+<div id='page-idea-add'>
+    <?php
+        $this->headScript ()->appendFile ( '/min/f=/tp/v1/js/accounting/expense/addcategory.js?02' );
+		$this->headTitle ( $this->escapeHtml ( $this->translate ( "Khoản mục chi phí" ) ) );
+				?>
+    <div class="main-header">
+		<h2><?= $this->translate('Thêm khoản mục') ?></h2>
+		<em>Các trường có dấu * là bắt buộc phải nhập</em>
+	</div>
+    <?= $this->partial('partial/formInput', array('form' => $this->form)); ?>
+    
+</div>

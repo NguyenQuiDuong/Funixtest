@@ -1,0 +1,181 @@
+<?php
+$experts = $this->experts;
+$this->headLink()->prependStylesheet('/css/home/directory_new_for_clients.css');
+$this->headScript()->appendFile('/tp/v1/js/expert/index/view.js');
+$this->headLink()->prependStylesheet('/tp/v1/css/expert/view.css');
+/** @var Subject\Model\Subject $subject */
+$subject = $this->subject;
+?>
+<style>
+
+
+</style>
+<div class="directory">
+    <div class="breadcrumb">
+        <div class="customizeContainer">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div :xmlns:v="http://rdf.data-vocabulary.org/#" class="innerBreadcrumb">
+<span ng-hide="loaded" typeof="v:Breadcrumb">
+<span typeof="v:Breadcrumb">
+<a class="breadLink" href="/experts" property="v:title" rel="v:url">
+    Expert Mentors
+</a>
+</span>
+<span class="sign">
+&nbsp;›&nbsp;
+</span>
+<span typeof="v:Breadcrumb">
+<span class="lastLink">
+Ruby
+</span>
+</span>
+</span>
+                        <!-- ngIf: loaded -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="resultHeader">
+        <div class="customizeContainer">
+            <div class="row-fluid">
+                <div class="span9">
+                    <h4 class="muted getHelpFromExperts">
+                        Nhận sự trợ giúp cho <?= $subject->getName()?>
+                    </h4>
+                </div>
+                <div class="span3 whyLoveOurMentors">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="searchBlock">
+        <div class="customizeContainer">
+            <div class="row-fluid">
+                <div class="span9">
+                    <div class="searchBarContent">
+                        <div class="bootstrap-tagsinput">
+                            <input class="input ng-pristine ng-valid ng-touched" type="text" name="subject" maxlength="255"  placeholder="Tên môn học" id="subject" value="" class="ui-autocomplete-input" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="searchButton">
+                        Tìm kiếm
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="resultBlock">
+        <div class="customizeContainer">
+            <div class="switchBlock">
+                <div class="row-fluid">
+                    <div class="span9">
+                        <div>
+                            <?php
+                            if($experts){
+                                foreach($experts as $mentor){
+
+                            ?>
+                            <div class="mentorModule">
+                                <div class="fake-mentor">
+                                    <div class="row-fluid">
+                                        <div class="span3">
+                                            <div class="fake-avatar"></div>
+                                            <div class="fake-rate"></div>
+                                        </div>
+                                        <div class="span9">
+                                            <div class="fake-info"></div>
+                                            <div class="fake-info"></div>
+                                            <div class="fake-info"></div>
+                                            <div class="fake-info"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row-fluid mentor-item-row">
+                                    <div class="span3 text-center mentor-info">
+                                        <div>
+                                            <img class="img-circle headImg" alt="Chưa có avatar" src="">
+                                        </div>
+                                        <div class="rate">
+                                            <?=$mentor['rate']?>
+                                        </div>
+<!--                                        <a class="btn btn-success messageBtn" href="#">-->
+<!--                                            Message Paulo-->
+<!--                                        </a>-->
+                                    </div>
+                                    <div class="span9 mentor-details">
+                                        <a class="name" href="/">
+                                            <?=$mentor['fullName']?$mentor['fullName']:$mentor['username']?>
+                                        </a>
+                                            <span class="ratingNum"><?$mentor['rating']?>   </span>
+                                        <div class="rating">
+                                            <?php if((int)$mentor['rating']){
+                                                for($i=1;$i<=(int)$mentor['rating'];$i++){
+                                                    echo '<span> ★ </span>';
+                                                }
+                                            }?>
+                                        </div>
+                                        <sup class="online">
+<span class="online">
+<i class="icon-circle"></i>
+ONLINE
+</span>
+                                        </sup>
+                                        <div class="headLine">
+                                            <small>
+                                                Tôi có hiểu biết về <?=$mentor['extraContent']?>
+                                            </small>
+                                        </div>
+<!--                                        <div class="language">-->
+<!--                                            <div class="badge customizeBadge">-->
+<!--<span class="removeDec">-->
+<!--Portuguese-->
+<!--</span>-->
+<!--                                            </div>-->
+<!--                                            <div class="badge customizeBadge">-->
+<!--<span class="removeDec">-->
+<!--English-->
+<!--</span>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+                                        <div class="about">
+                                            <?=$mentor['description']?>
+                                        </div>
+                                        <div class="expertise">
+                                            <?php foreach(explode(',',trim($mentor['extraContent'],'"')) as $nameSubject){?>
+                                            <div class="badge customizeBadge">
+                                                <a class="removeDec">
+                                                    <?=$nameSubject?>
+                                                </a>
+                                            </div>
+                                            <?php }?>
+                                        </div>
+                                        <div class="hirable">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row-fluid dummy-layer">
+                                    <div class="span1"></div>
+                                    <div class="span7"></div>
+                                    <div class="span2"></div>
+                                    <div class="span2 lastColumn">
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                            }
+                            }else{
+                                ?>
+                                <h2>Chưa có mentor cho môn học này</h2>
+                                <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="subjectId" id="subjectId" value="">

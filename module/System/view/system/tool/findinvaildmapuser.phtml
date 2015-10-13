@@ -1,0 +1,35 @@
+<?php
+$officeUserNames= $this->officeUserNames;
+?>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>e.id</th>
+            <th>e.oneofficeId</th>
+
+            <th>e.fullName</th>
+            <th>e.code</th>
+            <th>u.username</th>
+            <th>officeUserName</th>
+            <th>u.fullName</th>
+            <th>u.id</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if($this->rows){
+            foreach ($this->rows as $row){?>
+        <tr>
+            <td><?= $row['e.id']?></td>
+            <td><?= $row['e.oneofficeId']?></td>
+
+            <td class="info"><?= $row['e.fullName']?></td>
+            <td><?= $row['code']?></td>
+            <td><?= $row['username']?></td>
+            <td class="danger"><?php if(isset($officeUserNames[$row['e.oneofficeId']])){echo $officeUserNames[$row['e.oneofficeId']];}?></td>
+            <td class="info"><?= $row['userFullName']?></td>
+            <td><?= $row['userId']?></td>
+
+        </tr>
+        <?php }}?>
+    </tbody>
+</table>

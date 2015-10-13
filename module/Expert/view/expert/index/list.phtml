@@ -1,0 +1,114 @@
+<?php
+$subjects = $this->subjects;
+$this->headLink()->prependStylesheet('/css/home/directory_new_for_clients.css');
+$this->headScript()->appendFile('/tp/v1/js/expert/index/view.js');
+$this->headLink()->prependStylesheet('/tp/v1/css/expert/view.css');
+?>
+<div class="directory">
+    <div class="breadcrumb">
+        <div class="customizeContainer">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div :xmlns:v="http://rdf.data-vocabulary.org/#" class="innerBreadcrumb">
+<span typeof="v:Breadcrumb">
+<span typeof="v:Breadcrumb">
+<a class="breadLink" href="/experts" property="v:title" rel="v:url">
+    Expert Mentors
+</a>
+</span>
+<span class="sign">
+&nbsp;›&nbsp;
+</span>
+<span typeof="v:Breadcrumb">
+<span class="lastLink">
+Coding
+</span>
+</span>
+</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="searchBlock">
+        <div class="customizeContainer">
+            <div class="row-fluid">
+                <div class="span9">
+                    <div class="searchBarContent">
+                        <div class="bootstrap-tagsinput">
+                            <input class="input ng-pristine ng-valid ng-touched" type="text" name="subject" maxlength="255"  placeholder="Tên môn học" id="subject" value="" class="ui-autocomplete-input" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="searchButton" ng-click="searchAndRedirect()">
+                        Search
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="resultBlock"">
+        <div class="customizeContainer">
+            <div class="row-fluid">
+                <div class="span12">
+                    <h2 class="subTitle">Popular coding topics</h2>
+                </div>
+            </div>
+            <?php
+            if ($subjects){
+                $count = 0;
+            foreach ($subjects as $subject){
+                $count++;
+            /** @var \Subject\Model\Subject $subject */
+            if ($count == 1){
+            ?>
+            <div class="row-fluid">
+                <div class="span3">
+                    <span class="catBlock">
+                        <span class="imgBlock">
+                            <img alt="Ruby" src="/assets/topic/category/352x352/ruby.png">
+                        </span>
+                        <span class="catName"><?= $subject->getName() ?></span>
+                        <p class="description">
+                            <?= $subject->getDescription() ?>
+                        </p>
+                        <a class="linkBtn"
+                           href="/experts/index/view?id=<?= $subject->getId() ?>"><?= $subject->getName() . ' EXPERTS' ?></a>
+                    </span>
+                </div>
+
+            <?php }elseif($count == 4){ $count =0; ?>
+                <div class="span3">
+                    <span class="catBlock">
+                        <span class="imgBlock">
+                            <img alt="Ruby" src="/assets/topic/category/352x352/ruby.png">
+                        </span>
+                        <span class="catName"><?=$subject->getName()?></span>
+                        <p class="description">
+                            <?= $subject->getDescription()?>
+                        </p>
+                        <a class="linkBtn" href="/experts/index/view?id=<?=$subject->getId()?>"><?=$subject->getName().' EXPERTS'?></a>
+                    </span>
+                </div>
+            </div>
+                <?php }else{
+                ?>
+                <div class="span3">
+                    <span class="catBlock">
+                        <span class="imgBlock">
+                            <img alt="Ruby" src="/assets/topic/category/352x352/ruby.png">
+                        </span>
+                        <span class="catName"><?=$subject->getName()?></span>
+                        <p class="description">
+                            <?= $subject->getDescription()?>
+                        </p>
+                        <a class="linkBtn" href="/experts/index/view?id=<?=$subject->getId()?>"><?=$subject->getName().' EXPERTS'?></a>
+                    </span>
+                </div>
+                <?php
+            }
+                 }
+                } ?>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="subjectId" id="subjectId" value="">

@@ -1,0 +1,40 @@
+<?php
+$this->headTitle($this->escapeHtml($this->translate("Danh sách người dùng")));
+$this->headScript()->appendFile('/min/f=/tp/v1/js/system/user/index.js');
+?>
+<ul class="breadcrumb">
+	<li><a href="/"><i class="fa fa-home"></i></a></li>
+	<li class="active">Danh sách người dùng</li>
+</ul>
+<div id='page-crm-contact'>
+<?php
+echo '<div class="filterContainer">';
+echo $this->partial('partial/formFilter', ['form' => $this->fFilter]);
+echo '</div>';
+if($this->paginator) {
+	echo '</div>';
+	$dg = new \System\DataGrid\User\User(['dataSource' => $this->paginator]);
+	echo $this->partial('partial/dataGrid', [
+		'dataGrid' => $dg,
+		'title' => $this->translate("Danh sách người dùng"),
+		'topButtons' => '<a href="/system/user/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm người dùng</a>'
+	]);
+}
+?>
+</div>
+<div id="confirmDialog" title="<?= $this->translate('Xác nhận')?>" style="display:none;"></div>
+<div id="errorDialog" title="<?= $this->translate('Lỗi')?>" style="display:none;"></div>
+<script>
+var changeActiveMsg = '<?= $this->translate('Bạn muốn thay đổi trạng thái của người dùng')?>';
+var changeLockMsg = '<?= $this->translate('Bạn muốn thay đổi trạng thái khóa của người dùng')?>';
+var lbYes = '<?= $this->translate('Có')?>';
+var lbNo = '<?= $this->translate('Không')?>';
+var lbClose = '<?= $this->translate('Đóng')?>';
+</script>
+<style>
+.line-break {
+	width: 100%;
+	border-bottom: 1px dashed #eee;
+	margin: 5px 0;
+}
+</style>

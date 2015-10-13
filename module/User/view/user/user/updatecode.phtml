@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script type="text/javascript">
+	var userId = <?= $this->user()->getIdentity() ?>;
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<?php
+$this->headTitle('ERP', 'PREPEND');
+$this->headTitle()->setSeparator('-');
+echo $this->headTitle()->setAutoEscape(false);
+$this->headMeta()->appendName('DC.language', 'scheme=utf-8 content=vi');
+$this->headMeta()->appendName('SKYPE_TOOLBAR', 'SKYPE_TOOLBAR_PARSER_COMPATIBLE');
+
+echo $this->headMeta();
+echo $this->headLink([
+    'rel' => 'shortcut icon',
+    'type' => 'image/vnd.microsoft.icon',
+    'href' => '/favicon.png'
+]);
+$style = array(
+    '/js/jquery/jquery-ui.min.css',
+    '/css/font-awesome.min.css',
+    '/css/bootstrap.css',
+    '/css/bootstrap-admin.css',
+    '/css/bootstrap-admin.red.css',
+    '/tp/v1/css/a.css',
+    '/css/daterangepicker-bs3.css',
+    '/css/bootstrap-datetimepicker.css'
+);
+echo '<link rel="stylesheet" href="/min/f=' . implode(',', $style) . '?1" type="text/css">';
+?>
+<style>
+.top-bar .notifications .general .dropdown-menu {
+	left: -250px !important
+}
+
+.dropdown-menu li {
+	position: relative
+}
+
+.timestamp {
+	position: absolute;
+	bottom: 0px;
+	right: 5px
+}
+.checkform {
+	width: 50%;
+	margin: 20px auto;
+	padding: 15px 15px 0;
+	border: 1px solid #ddd;
+}
+</style>
+</head>
+<body>
+	<div class="wrapper">
+		<header class="top-bar">
+			<div class="container">
+				<div class="row">
+					<!-- logo -->
+					<div class="col-md-2 logo">
+						<a href="/crm"> <img style="height: 30px" src="/images/nhanh2.png"
+							alt="Nhanh.vn">
+						</a>
+						<!-- responsive top menu bar icon -->
+						<span class="hidden-md hidden-lg topMenuToggle"><i
+							class="fa fa-bars"></i></span>
+						<!-- end responsive menu bar icon -->
+						<i title="Tìm chức năng" id="searchFeatures" class="fa fa-search"></i>
+					</div>
+					<!-- end logo -->
+				</div>
+				<!-- /row -->
+			</div>
+		</header>
+		<div class="bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 content-wrapper">
+                        <div class="checkform">
+                        	<form class="" method="post" action="">
+                        		<div class="form-horizontal">
+
+                        				<div class="">
+                        				    <?php if($this->errorMsg){?>
+                        				    <div class="alert alert-danger">
+                        				        <?= implode('<br/>', $this->errorMsg)?>
+                        				    </div>
+                        				    <?php }?>
+                        					<div class="alert alert-info">
+                        						Để chuẩn bị đồng bộ dữ liệu với <a
+                        							href="http://office.vnpgroup.vn/">office.vnpgroup.vn</a> Xin vui vòng điền mã nhân viên của
+                        						các bạn trên office, đây là mã mà các bạn dùng để chốt vân
+                        						tay. Ví dụ: 0024, 4800 ... <br /><br/> Trong trường hợp bạn chưa có mã
+                        						nhân viên trên office, hãy bấm "Bỏ qua".
+                        					</div>
+                        				</div>
+                        				<div class="form-group">
+                        					<div class="col-md-6">
+                        						<input type="text" name="code" class="form-control"
+                        							placeholder="Mã nhân viên">
+                        					</div>
+                        					<div class="col-md-6">
+                        					    <input type="submit" class="btn btn-primary" value="Lưu">
+                        					    <a href="<?= $this->redirectLink?>" class="btn btn-default">Bỏ qua</a>
+                        					</div>
+                        				</div>
+                        				<div class="form-group">
+                        					<div class="col-md-12 ">
+
+                        					</div>
+                        				</div>
+
+                        		</div>
+                        	</form>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer class="footer">
+                <?php echo $this->render('layout/footer'); ?>
+            </footer>
+	</div>
+</body>
+</html>

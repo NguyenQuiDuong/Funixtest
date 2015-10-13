@@ -1,0 +1,30 @@
+<?php
+?>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Department</th>
+            <th>ID</th>
+            <th>OLD code</th>
+            <th>NEW code</th>
+            <th>Chốt tay</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if($this->result){?>
+        <?php foreach ($this->result as $row){?>
+        <tr>
+            <td><?= $row['fullName']?></td>
+            <td><?= $row['companyName']?></td>
+            <td><?= $row['departmentName']?></td>
+            <td><?= $row['id']?></td>
+            <td><?= $row['code']?></td>
+            <td><?= $row['newCode']?></td>
+            <td><?= $row['activatedCode']?></td>
+        </tr>
+        <?php }?>
+        <?php }?>
+    </tbody>
+</table>

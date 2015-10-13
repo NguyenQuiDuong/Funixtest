@@ -1,0 +1,227 @@
+<?php
+
+if($this->addTimesheet == true) {
+	$addTimesheet = '<a id="addTimesheet" class="fa fa-calendar" style="cursor: pointer;margin-right:10px;float:right" data-original-title="Khai nhanh timesheet" data-placement="top" data-toggle="tooltip"></a>';
+} else {
+	$addTimesheet = '';
+}
+
+/* @var $form Zend\Form\Form */
+if(!($form = $this->form)) {
+	return;
+}
+$form->prepare();
+
+$displayGroups = isset($this->displayGroups) ? $this->displayGroups : null;
+$elementGroups = [];
+if(is_array($displayGroups)) {
+	foreach ($displayGroups as $groupName => $groupData) {
+		$elementGroups[$groupData['startElement']] = $groupName;
+		$elementGroups[$groupData['endElement']] = $groupName;
+	}
+}
+
+echo $this->form()->openTag($form);
+echo '<div class="form-horizontal">';
+
+$renderingGroup = false;
+
+foreach ($form as $element) {
+	/* @var $element \Zend\Form\Element */
+
+	// render sub form
+	if($element instanceof \Zend\Form\Form) {
+		if($element->getOption('clearBefore')) {
+			echo '<div style="clear:both"></div>';
+		}
+		if($form->getOption('layout') == 'form-2-cols') {
+			echo '<div class="col-md-6">';
+		}
+		echo '<fieldset>';
+		if($element->getLabel()) {
+			echo '<legend>'. $element->getLabel() .'</legend>';
+		}
+		renderSubForm($this, $form, $element);
+		echo '</fieldset>';
+		if($form->getOption('layout') == 'form-2-cols') {
+			echo '</div>';
+		}
+		if($element->getOption('clearAfter')) {
+			echo '<div style="clear:both"></div>';
+		}
+	}
+	// render display group
+	else if($element instanceof \ZendX\Form\Element\DisplayGroup) {
+	    if ($addTimesheet != ''){
+	        echo '<div class="col-md-12">';
+	    }else{
+		  echo '<div class="col-md-6">';
+	    }
+		echo '<fieldset>';
+		if($element->getLabel()) {
+			echo '<legend>'. $element->getLabel() .$addTimesheet.'</legend>';
+		}
+		if(is_array($element->getElements())) {
+			foreach($element->getElements() as $e) {
+				renderFormElement($this, $form, $e);
+			}
+		}
+		echo '</fieldset>';
+		echo '</div>';
+
+	}
+	// render element
+	else if($element instanceof \Zend\Form\Element) {
+		// ignore element added to a group
+		if($element->getOption('displayGroup')) {
+			continue;
+		}
+
+		if($element->getOption('clearBefore')) {
+			echo '<div style="clear:both"></div>';
+		}
+
+		$isHiddenField = false;
+		if($element instanceof \Zend\Form\Element\Csrf || $element instanceof \Zend\Form\Element\Hidden) {
+			$isHiddenField = true;
+		}
+
+		if(!$isHiddenField) {
+			if(!in_array('fluid', [$form->getOption('layout'), $element->getOption('layout')])) {
+				echo '<div class="col-md-6">';
+			} else {
+				echo '<div class="col-md-12">';
+			}
+		}
+
+		echo '<div>';
+		renderFormElement($this, $form, $element);
+		echo '</div>';
+
+		if(!$isHiddenField) {
+			echo '</div>';
+		}
+
+		if($element->getOption('clearAfter')) {
+			echo '<div style="clear:both"></div>';
+		}
+	}
+}
+echo '</div>';
+
+echo $this->form()->closeTag($form);
+
+/**
+ * @author	VanCK
+ * @param \Zend\Form\Fieldset $fieldset
+ */
+function renderSubForm($view, $form, $subform)
+{
+	foreach($subform as $element) {
+		if($element instanceof \Zend\Form\Form) {
+			renderSubForm($view, $form, $element);
+		} else {
+			renderFormElement($view, $form, $element);
+		}
+	}
+}
+
+/**
+ * @author	VanCK
+ * @param \Zend\Form\Form $form
+ * @param \Zend\Form\Element $element
+ */
+function renderFormElement($view, $form, $element)
+{
+	if(!$element->getAttribute('id')) {
+		$element->setAttribute('id', $element->getName());
+	}
+
+	$inputFilter = null;
+	if($form->getInputFilter()->has($element->getName())) {
+		/* @var $inputFilter Zend\InputFilter\Input */
+		$inputFilter = $form->getInputFilter()->get($element->getName());
+	}
+
+	if($element instanceof \Zend\Form\Element\Csrf || $element instanceof \Zend\Form\Element\Hidden) {
+		echo '<div class="form-group hide">';
+	} else {
+		echo '<div class="form-group">';
+	}
+
+	$labelSpan = '';
+	$labelClass = '';
+	if($element->getLabel()) {
+		if($inputFilter && $inputFilter->isRequired()) {
+			$labelClass = " required";
+			$labelSpan = " <span class='required'>*</span> ";
+		}
+	}
+
+	// set column layout
+	$labelCol = 'col-md-4';
+	$elementCol = 'col-md-8';
+
+	if($element->getOption('layout') == 'fluid') {
+		$labelCol = 'col-md-2';
+		$elementCol = 'col-md-10';
+	}
+
+	echo "<label class='$labelCol control-label$labelClass'>". $element->getLabel() . $labelSpan .'</label>';
+	echo "<div class='$elementCol'>";
+
+	$class = $element->getAttribute('class');
+
+	if(in_array($element->getAttribute('type'), ['text', 'select', 'password', 'select', 'date'])) {
+		if(!$element->getOption('tagsinput')){
+			$element->setAttribute('class', $class ? $class . ' form-control' : 'form-control');
+		}
+	}
+
+	// render element based on type
+	if($element instanceof \Zend\Form\Element\Radio) {
+		if(is_array($element->getOption('value_options'))) {
+			foreach($element->getOption('value_options') as $key => $label) {
+				echo '<label class="radio radio-inline">';
+				$checked = ($key == $element->getValue()) ? ' checked=checked ' : '';
+				echo "<input$checked type='radio' value='". $key ."' name='". $element->getName() ."'/>". $label;
+				echo '</label>';
+			}
+		}
+	} else if ($element->getOption('leftIcon') || $element->getOption('rightIcon')) {
+		echo '<div class="input-group">';
+		if($element->getOption('leftIcon')) {
+			echo '<span class="input-group-addon"><i class="'. $element->getOption('leftIcon') .'"></i></span>';
+		}
+		echo $view->formElement($element);
+		if($element->getOption('rightIcon')) {
+			echo '<span class="input-group-addon"><i class="'. $element->getOption('rightIcon') .'"></i></span>';
+		}
+		echo '</div>';
+	} elseif ($element->getOption('tagsinput')){
+		echo '<div class="bootstrap-tagsinput">';
+		echo $view->formElement($element);
+		echo '</div>';
+	} else {
+		echo $view->formElement($element);
+	}
+	//render description
+	if($element->getOption('descriptions') && is_array($element->getOption('descriptions'))){
+		echo '<ul class="parsley-description-list">';
+		foreach ($element->getOption('descriptions') as $description){
+			echo '<li>'.$description.'</li>';
+		}
+		echo '</ul>';
+	}
+	// render error messages
+	if(is_array($element->getMessages()) && count($element->getMessages())) {
+		echo '<ul class="parsley-error-list">';
+		foreach($element->getMessages() as $validatorType => $message) {
+			echo '<li>'. $message .'</li>';
+		}
+		echo '</ul>';
+	}
+
+	echo '</div>';
+	echo '</div>';
+}

@@ -1,0 +1,192 @@
+<?php
+$form = $this->form;
+$features = $this->features;
+$quicklinks = $this->quickLinks;
+/**
+cấu trúc của features:
+array(
+    array(
+        'content' => 'html cua chức năng',
+        'resource' => optional
+        'privilege' => optional
+    ),...
+)
+ */
+
+/**
+Cấu trúc của quickLink
+array(
+    array(
+        'content' => 'html content cua link',
+        'uri' => 'link',
+        'attributes' => optional
+        'resource' => optional
+        'privilege' => optional
+    ),...
+)
+ */
+if(!$form || !$form instanceof \Zend\Form\Form){
+    return ;
+}
+$form->prepare();
+$groupElementDefault = [];
+$groupElementExtend = [];
+foreach ($form->getElements() as $element){
+    if(!$element->getAttribute('id')) {
+        $element->setAttribute('id', $element->getName());
+    }
+    $class = 'form-control';
+	if($element instanceof \Zend\Form\Element\Submit) {
+		$class .= ' btn-sm';
+	}
+	if($element->getAttribute('class')) {
+		$class .= ' '. $element->getAttribute('class');
+	}
+	$element->setAttribute('class', $class);
+	if($element->getOption('isMain') || $element->getAttribute('type') == 'submit'){
+	    $groupElementDefault[] = $element;
+	} else {
+	    $groupElementExtend[] = $element;
+	}
+}
+$formClass = $form->getAttribute('class') ? $form->getAttribute('class') .' form-inline lolify' : 'form-inline lolify';
+$form->setAttribute('class', $formClass);
+$form->setAttribute('role', 'form');
+$authService = $this->app()->getServiceLocator()->get('\Authorize\Service\Authorize');
+echo $this->form()->openTag($form);
+
+?>
+<?php /*------------Bộ seach đã thu gọn --------------*/?>
+<div class="col-md-10 lolify-default">
+<?php if(count($groupElementDefault)){?>
+
+    <?php foreach ($groupElementDefault as $element){?>
+    <?php if($element instanceof \Zend\Form\Element\Csrf || $element instanceof \Zend\Form\Element\Hidden) {
+	  echo $this->formElement($element);
+    } else {?>
+    <div class="form-group">
+        <?= $this->formelement($element)?>
+        <?= $this->formelementerrors($element, ['class' => 'parsley-error-list'])?>
+    </div>
+    <?php }}?>
+
+<?php }?>
+</div>
+<?php /*------------------Khu vực các nút bấm-----------------*/?>
+<div class="col-md-2 lolify-control">
+    <?php /*------------------Nút bấm các chức năng-----------------*/?>
+    <?php if($features && count($features)){?>
+    <div class="btn-group pull-right lolify-features"
+		data-toggle="tooltip" data-placement="top" title="Chức năng, thao tác">
+		<button class="btn dropdown-toggle" type="button" aria-haspopup="true"
+			aria-expanded="false" data-toggle="dropdown">
+			<span class="fa fa-cog"></span> <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+    <?php
+    foreach ($features as $feature){
+        $feature = array_merge(array('content' => '', 'resource' => null, 'privilege'=> null), $feature);
+        if($feature['resource']){
+            if(!$authService->isAllowed($feature['resource'], $feature['privilege'])){
+                continue;
+            }
+        }
+        echo '<li>'.$feature['content'].'</li>';
+    }?>
+        </ul>
+	</div>
+    <?php }?>
+
+    <?php /*------------------Nút bấm link nhanh-----------------*/?>
+    <?php if($quicklinks && count($quicklinks)){?>
+    <div class="btn-group pull-right lolify-bookmark"
+		data-toggle="tooltip" data-placement="top" title="Đường dẫn nhanh">
+		<button class="btn  dropdown-toggle" data-toggle="dropdown"
+			type="button" aria-haspopup="true" aria-expanded="true">
+			<span class="fa fa-bookmark"></span> <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+        <?php foreach ($quicklinks as $quickLinkIndex => $quicklink){
+            $quicklink = array_merge(array('content' => '', 'uri' => '#', 'attributes' => [], 'resource' => null, 'privilege'=> null), $quicklink);
+            if($quicklink['resource']){
+                if(!$authService->isAllowed($quicklink['resource'], $quicklink['privilege'])){
+                    continue;
+                }
+            }
+            echo '<li>';
+            $attributes = $quicklink['attributes']?:[];
+            if(!isset($attributes['href'])){
+                $attributes['href'] = $quicklink['uri'];
+            }
+
+            $attributes['href'] = \Home\Service\Uri::build($attributes['href'], ['quickLinkIndex' => $quickLinkIndex]);
+            $link = '<a ';
+            foreach ($attributes as $key=>$value){
+                $link .= $key.'="'.$value.'" ';
+            }
+            $link .= '>'.$quicklink['content'].'</a>';
+            echo $link;
+            echo '</li>';
+
+        }?>
+
+        </ul>
+	</div>
+    <?php }?>
+
+    <?php /*------------------Nút bấm ẩn hiện bộ loạc nâng cao-----------------*/?>
+    <?php if(count($groupElementExtend)){?>
+    <button class="btn  pull-right lolify-showextend" type="button"
+		data-toggle="tooltip" data-placement="top" title="bộ lọc nâng cao">
+		<span class="fa fa-th"></span>
+	</button>
+    <?php }?>
+</div>
+<?php /*------------Bộ seach mở rộng --------------*/?>
+<?php if(count($groupElementExtend)){?>
+<div class="col-md-12 lolify-extend" style="display: none;">
+    <?php foreach ($groupElementExtend as $element){?>
+    <?php if($element instanceof \Zend\Form\Element\Csrf || $element instanceof \Zend\Form\Element\Hidden) {
+	  echo $this->formElement($element);
+    } else {?>
+    <div class="form-group">
+        <?= $this->formelement($element)?>
+        <?= $this->formelementerrors($element, ['class' => 'parsley-error-list'])?>
+    </div>
+    <?php }}?>
+
+    </div>
+<?php }?>
+<?php
+echo $this->form()->closeTag($form);
+$currentQuickLinkIndex = isset($_GET['quickLinkIndex'])?$_GET['quickLinkIndex']:null;
+?>
+<div class="clearfix"></div>
+<div class="lolify-left-menu" style="display: none;">
+    <?php if($quicklinks && count($quicklinks)){?>
+		<ul class="main-menu">
+			<li class="<?= $currentQuickLinkIndex !== null ? 'active' : ''?>"><a class="js-sub-menu-toggle"> <i
+					class="fa fa-bookmark"></i> <span class="text">Đường dẫn nhanh</span>
+					<i class="toggle-icon fa fa-angle-right"></i>
+			</a>
+				<ul class="sub-menu <?= $currentQuickLinkIndex !== null ? 'open' : ''?>">
+				<?php foreach ($quicklinks as $quickLinkIndex => $quicklink){
+				    $quicklink = array_merge(array('content' => '', 'uri' => '#', 'attributes' => [], 'resource' => null, 'privilege'=> null), $quicklink);
+				    if($quicklink['resource']){
+				        if(!$authService->isAllowed($quicklink['resource'], $quicklink['privilege'])){
+				            continue;
+				        }
+				    }
+				    if($currentQuickLinkIndex !== null && $currentQuickLinkIndex == $quickLinkIndex){
+                        echo '<li class="active">';
+                    } else {
+                        echo '<li class="">';
+                    }
+                    $href = \Home\Service\Uri::build($quicklink['uri'], ['quickLinkIndex' => $quickLinkIndex]);
+                    echo '<a href="'.$href.'" class="">'.$quicklink['content'].'</a></li>';
+				}?>
+				</ul></li>
+		</ul>
+
+	<?php }?>
+</div>

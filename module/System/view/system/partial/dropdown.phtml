@@ -1,0 +1,76 @@
+<?php
+echo '<div class="dropdown">';
+if($this->dataToggle && is_array($this->dataToggle)){
+	$htmlTag = 'button';
+	$data_target = '';
+	$content = '';
+	$caret = '';
+	$attributes = [
+		'data-toggle' => 'dropdown',
+		'href' => '#'
+	];
+	foreach ($this->dataToggle as $attributeName => $attributeValue){
+		switch ($attributeName){
+			case 'htmlTag':
+				$htmlTag = $attributeValue;
+				break;
+			case 'data-toggle':
+				$attributes['data-toggle'] = $attributeValue;
+				break;
+			case 'href':
+				$attributes['data-target'] = '#';
+				$attributes['href'] = $attributeValue;
+				break;
+			case 'content':
+				$content = $attributeValue;
+				break;
+			case 'caret':
+				if($attributeValue){
+					$caret = ' <span class="caret"></span>';
+				}
+			default:
+				$attributes[$attributeName] = $attributeValue;
+				break;
+		}
+	}
+	echo '<'.$htmlTag;
+	foreach ($attributes as $attributeName => $attributeValue){
+		echo ' '.$attributeName.'="'.$attributeValue.'"';
+	}
+	echo '>'.$content.$caret.'</'.$htmlTag.'>';
+}
+
+if($this->menu){
+	$pull_right = '';
+	$pull_left = '';
+	$attributes = [];
+	if(isset($this->menu['attributes']) && is_array($this->menu['attributes']) && count($this->menu['attributes'])){
+
+		foreach ($this->menu['attributes'] as $attributeName => $attributeValue){
+			switch ($attributeName){
+				case 'pull-right':
+					if($attributeValue){
+						$pull_right = ' pull-right';
+					}
+					break;
+				case 'pull-left':
+					if($attributeValue){
+						$pull_left = ' pull-left';
+					}
+					break;
+				default:
+					$attributes[] = $attributeName.'="'.$attributeValue.'"';
+			}
+		}
+	}
+	echo '<ul class="dropdown-menu'.$pull_right.$pull_left.'" role="menu" aria-labelledby="dLabel" '.implode(' ', $attributes).'>';
+	if(isset($this->menu['options']) && is_array($this->menu['options']) && count($this->menu['options'])){
+		foreach ($this->menu['options'] as $select){
+			echo '<li>'.$select.'</li>';
+		}
+	}
+
+	echo '</ul>';
+}
+
+echo '</div>';

@@ -1,0 +1,339 @@
+<?php
+use Home\Model\DateBase;
+$this->headScript()->appendFile('/min/f=/tp/v1/js/accounting/transaction/approve.js?02');
+$this->headTitle($this->escapeHtml($this->translate("Sửa phiếu yêu cầu thu")));
+?>
+<ul class="breadcrumb">
+	<li><a href="/accounting"><i class="fa fa-home"></i></a></li>
+	<li><a href="/accounting/transaction/index">thu chi</a></li>
+	<li class="active">Sửa phiếu yêu cầu thu chi</li>
+</ul>
+<?php if($this->errorMsg){?>
+<div class="alert alert-danger alert-dismissable"><?= implode('<br/>', $this->errorMsg)?></div>
+<?php return;
+}?>
+<div class="main-header">
+	<h2><?= $this->translate('Sửa phiếu yêu cầu thu chi') ?></h2>
+	<em>Các trường có dấu * là bắt buộc phải nhập</em>
+</div>
+<?php
+$form = $this->form;
+/*@var $form \Crm\Form\Lead */
+foreach ($form->getElements() as $element){
+	if($element instanceof \Zend\Form\Element){
+		if(!$element->getAttribute('id')){
+			$element->setAttribute('id', $element->getName());
+		}
+		$class = $element->getAttribute('class');
+		if(in_array($element->getAttribute('type'), ['text', 'select', 'password', 'select', 'date'])) {
+			$element->setAttribute('class', $class ? $class . ' form-control' : 'form-control');
+		}
+	}
+}
+$transaction = $this->transaction;
+/*@var $transaction \Accounting\Model\Transaction */
+?>
+<form id="fTransaction" name="fTransaction" method="post" action="">
+	<div class="form-horizontal">
+		<div class="col-md-6">
+			<fieldset>
+				<div class="form-group">
+					<label class="col-md-4 control-label">
+					    <?= $this->translate('Công ty:')?>
+					</label>
+					<div class="col-md-8">
+						<b><?= $this->company ? $this->company->getName() : ''?></b>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label">
+					    <?= $this->translate('Loại phiếu:')?>
+					</label>
+					<div class="col-md-8">
+					   <?php if($transaction->getType() == \Accounting\Model\Transaction::TYPE_PAYMENT){?>
+						<b class="text-danger"><?= $transaction->getTypeName()?></b>
+						<?php } else {?>
+						<b class="text-primary"><?= $transaction->getTypeName()?></b>
+						<?php }?>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label">
+					    <?= $this->translate('Trạng thái:')?>
+					</label>
+					<div class="col-md-8">
+						<b><?= $transaction->getStatusName()?></b>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label required"><?= $form->get('applyDate')->getLabel()?><span
+						class="required">*</span> </label>
+					<div class="col-md-8">
+						<?= $this->formelement($form->get('applyDate'))?>
+						<?= $this->formelementerrors($form->get('applyDate'), ['class' => 'parsley-error-list'])?>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label required"><?= $form->get('description')->getLabel()?><span
+						class="required">*</span> </label>
+					<div class="col-md-8">
+						<?= $this->formelement($form->get('description'))?>
+						<?= $this->formelementerrors($form->get('description'), ['class' => 'parsley-error-list'])?>
+						<?= $this->formelementerrors($form->get('items'), ['class' => 'parsley-error-list'])?>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<div class="col-md-6">
+			<fieldset>
+				<div class="form-group">
+					<label class="col-md-4 control-label">
+					    <?= $this->translate('Người tạo:')?>
+					</label>
+					<div class="col-md-8">
+						<b><?= $this->createdBy ? ($this->createdBy->getFullName()?:$this->createdBy->getEmail()) : ''?></b>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label">
+					    <?= $this->translate('Ngày tạo:')?>
+					</label>
+					<div class="col-md-8">
+						<span><?= DateBase::toDisplayDateTime($transaction->getCreatedDateTime())?></span>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<div id="transactionItems" class="col-md-12">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>STT</th>
+						<th>Quỹ (tài khoản) <span style="color: red;">*</span></th>
+						<th>Khoản mục thu chi <span style="color: red;">*</span></th>
+						<th>Số tiền <span style="color: red;">*</span></th>
+						<th>VAT(%)</th>
+						<th>Diễn giải chi tiết</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+                <?php if ($this->items) {
+                    $index = 1;
+                	foreach ($this->items as $item) {
+                        /*@var $item \Accounting\Model\Transaction\Item */?>
+                    <tr>
+						<td class="colIndex"><?= $index++;?></td>
+						<td class="colAccount">
+						   <a class="changeAccount" data-id="<?= $item->getAccountId()?>"><?=
+						      $item->getOption('account')
+						          ? $item->getOption('account')->getCode().' - '.$item->getOption('account')->getName()
+						          : '_ _'?></a>
+						   <input type="hidden" class="item-accountId" value="<?= $item->getAccountId()?>"/>
+						   <input type="hidden" class="item-id" value="<?= $item->getId()?>"/>
+						</td>
+						<td class="colExpenseCategory">
+                            <a class="changeCategory" data-id="<?= $item->getExpenseCategoryId()?>"><?=
+						      $item->getOption('expenseCategory')
+						          ? $item->getOption('expenseCategory')->getCode().' - '.$item->getOption('expenseCategory')->getName()
+						          : '_ _'?></a>
+						    <input type="hidden" class="item-expenseCategoryId" value="<?= $item->getExpenseCategoryId()?>"/>
+						</td>
+						<td class="colAmount"><input type="text"
+							class="form-control intAutoNumeric item-amount" value="<?= $item->getAmount()?>"></td>
+						<td class="colVat"><input type="text"
+							class="form-control intAutoNumeric item-vat" value="<?= $item->getVat()?>"></td>
+						<td class="colDescription"><input type="text"
+							class="form-control item-description" value="<?= $item->getDescription()?>"></td>
+						<td class="colHelp colControls"><a
+							class="fa fa-times-circle icon removeItem"></a></td>
+					</tr>
+                    <?php }}?>
+                </tbody>
+				<tfoot>
+					<tr class="success rowTotal">
+						<td colspan="3"><b>Tổng</b></td>
+						<td style="text-align: right;" class="colTotal"></td>
+						<td colspan="3"></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+
+		<?= $this->formelement($form->get('items'))?>
+		<div style="clear: both"></div>
+		<div class="col-md-6">
+			<div>
+				<div class="form-group">
+					<label class="col-md-4 control-label"></label>
+					<div class="col-md-8">
+					    <?= $this->formelement($form->get('btnSubmit'))?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+<div id="errorModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Lỗi</h4>
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-danger alert-dismissable"></div>
+			</div>
+			<div class="modal-footer">
+				<button type='button' class='btn btn-default' data-dismiss='modal'>Đóng</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="selectAccountModal" class="modal fade">
+	<div class="modal-dialog" style="width: 800px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Danh sách tài khoản</h4>
+			</div>
+			<div class="modal-body">
+				<div class="col-md-6"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" value="" class="form-control"
+								id="accountSearch" maxlength="255"> <span
+								class="input-group-addon"><i class="fa fa-search"></i></span>
+						</div>
+					</div>
+				</div>
+				<div style="clear: both; margin-bottom: 15px;"></div>
+				<div class="col-md-12">
+					<div style="max-height: 300px; overflow-y: scroll;">
+						<table id="dgAccounts" class="display table table-hover">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Mã</th>
+									<th>Tên</th>
+								</tr>
+							</thead>
+							<tbody>
+			                 <?php if($this->accounts){
+			                 foreach ($this->accounts as $account){?>
+			                 <tr>
+									<td class="colControls"><input type="radio"
+										id="accountRadio_<?= $account->getId()?>" name="accountRadio" data-id="<?= $account->getId()?>"/></td>
+									<td><label for="accountRadio_<?= $account->getId()?>"><?= $account->getCode()?></label></td>
+									<td style="padding-left: <?= $account->getOption('ord')?($account->getOption('ord')*50):0?>px">
+										<label for="accountRadio_<?= $account->getId()?>"><?= $account->getName()?></label>
+									</td>
+								</tr>
+			                 <?php }}?>
+			             </tbody>
+						</table>
+					</div>
+				</div>
+				<div style="clear: both; margin-bottom: 15px;"></div>
+			</div>
+			<div class="modal-footer">
+			    <button type='button' class='btn btn-primary select'>Chọn</button>
+				<button type='button' class='btn btn-default' data-dismiss='modal'>Đóng</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="selectExpenseCategoryModal" class="modal fade">
+	<div class="modal-dialog" style="width: 800px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Danh sách hạng mục</h4>
+			</div>
+			<div class="modal-body">
+				<div class="col-md-6"></div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" value="" class="form-control"
+								id="categorySearch" maxlength="255"> <span
+								class="input-group-addon"><i class="fa fa-search"></i></span>
+						</div>
+					</div>
+				</div>
+				<div style="clear: both; margin-bottom: 15px;"></div>
+				<div class="col-md-12">
+					<div style="max-height: 300px; overflow-y: scroll;">
+						<table id="dgCategories" class="table table-hover">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Mã</th>
+									<th>Tên</th>
+								</tr>
+							</thead>
+							<tbody>
+			                 <?php if($this->categories){
+			                 foreach ($this->categories as $category){?>
+			                 <tr>
+									<td class="colControls"><input type="radio"
+										id="categoryRadio_<?= $category->getId()?>"
+										name="categoryRadio" data-id="<?= $category->getId()?>"/></td>
+									<td><label for="categoryRadio_<?= $category->getId()?>"><?= $category->getCode()?></label></td>
+									<td style="padding-left: <?= $category->getOption('ord')?($category->getOption('ord')*50):0?>px">
+										<label for="categoryRadio_<?= $category->getId()?>"><?= $category->getName()?></label>
+									</td>
+								</tr>
+			                 <?php }}?>
+			             </tbody>
+						</table>
+					</div>
+				</div>
+				<div style="clear: both; margin-bottom: 15px;"></div>
+			</div>
+			<div class="modal-footer">
+			    <button type='button' class='btn btn-primary select' >Chọn</button>
+				<button type='button' class='btn btn-default' data-dismiss='modal'>Đóng</button>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+#transactionItems .form-control{
+    border: none;
+	background: none;
+}
+.colIndex{
+	width: 5%;
+}
+.colAmount, .colExpenseCategory{
+	width: 20%;
+}
+.colVat{
+	width: 8%;
+}
+.colAmount .item-amount, .colVat .item-vat{
+	text-align: right;
+}
+.error{
+	border-color: red;
+	color: red;
+}
+tr.error{
+	background-color: #FCE1CF;
+}
+.addNewRow{
+	margin-left: 5px;
+}
+
+</style>
+<script>
+var noItemSelectMsg = '<?= $this->translate('Bạn chưa nhập chi tiết các khoản mục thu chi')?>';
+</script>

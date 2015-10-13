@@ -1,0 +1,19 @@
+<?php
+	$this->headTitle($this->translate('revert lại user ngày 29/5'));
+?>
+<input type='hidden' id="redirectUri" value="<?= $this->redirectUri?>" />
+<input type='hidden' id="defaultRedirectUri" value="<?= $this->defaultRedirectUri?>" />
+<?php if($this->totalUser){
+echo '<b>Đã update '.$this->totalUser.' user</b></br/>';
+}?>
+<script type="text/javascript">
+	setTimeout(function(){
+		if(document.getElementById("redirectUri").value != "") {
+			window.location = document.getElementById("redirectUri").value;
+		} else {
+			alert('Đã update xong');
+			windown.location = '/work/task/index';
+		}
+	}, 500);
+</script>
+<i><b class='lnk'>Đã update được [<?= $this->page .' / '. $this->totalPages ?>] trang</b></i><br><br>

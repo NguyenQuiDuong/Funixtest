@@ -1,0 +1,15 @@
+<ul class="breadcrumb">
+	<li><a href="/"><i class="fa fa-home"></i></a></li>
+
+	<li class="active">Tool clone role</li>
+</ul>
+<div id='page-crm-contact-add'>
+<?php
+	$this->headTitle($this->escapeHtml($this->translate("Tool clone role")));
+?>
+	<div class="main-header">
+		<h2><?= $this->translate('Tool clone role')?></h2>
+		<em>Các trường có dấu * là bắt buộc phải nhập</em>
+	</div>
+	<?= $this->partial('partial/formInput', array('form' => $this->form)); ?>
+</div>

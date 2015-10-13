@@ -1,0 +1,92 @@
+<?php
+$this->headScript()->appendFile('/min/f=/js/select2.full.min.js');
+$this->headLink()->prependStylesheet('/min/f=/css/select2.min.css');
+$this->headScript()->appendFile('/min/f=/tp/v1/js/accounting/transaction/add.js?03');
+$this->headTitle($this->escapeHtml($this->translate("Lập phiếu yêu cầu chi")));
+?>
+<ul class="breadcrumb">
+	<li><a href="/accounting"><i class="fa fa-home"></i></a></li>
+	<li><a href="/accounting/transaction/index">Thu chi</a></li>
+	<li class="active">Lập phiếu yêu cầu chi</li>
+</ul>
+<div class="main-header">
+	<h2><?= $this->translate('Lập phiếu yêu cầu chi') ?></h2>
+	<em>Các trường có dấu * là bắt buộc phải nhập</em>
+</div>
+<?= $this->partial('partial/formInput', array('form' => $this->form)); ?>
+<div id="transactionItems" class="col-md-12">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Khoản mục thu chi <span style="color: red;">*</span></th>
+                <th>Số tiền <span style="color: red;">*</span></th>
+                <th>VAT(%)</th>
+                <th>Diễn giải chi tiết</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+            <tr class="success rowTotal">
+                <td colspan="2"><b>Tổng</b></td>
+                <td style="text-align: right;" class="colTotal"></td>
+                <td colspan="3"></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<div id="prepairElement" class="hide">
+    <select class="prepair-expenseCategory form-control">
+        <option value="">- Khoản mục chi tiêu -</option>
+        
+    </select>
+</div>
+
+<div id="errorModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Lỗi</h4>
+			</div>
+			<div class="modal-body">
+			     <div class="alert alert-danger alert-dismissable"></div>
+			</div>
+			<div class="modal-footer">
+			     <button type='button' class='btn btn-default' data-dismiss='modal'>Đóng</button>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+#transactionItems .form-control{
+    border: none;
+	background: none;
+}
+.colIndex{
+	width: 5%;
+}
+.colAmount, .colExpenseCategory{
+	width: 20%;
+}
+.colVat{
+	width: 8%;
+}
+.colAmount .item-amount, .colVat .item-vat{
+	text-align: right;
+}
+.error{
+	border-color: red;
+	color: red;
+}
+.addNewRow{
+	margin-left: 5px;
+}
+
+</style>
+<script>
+var noItemSelectMsg = '<?= $this->translate('Bạn chưa nhập chi tiết các khoản mục thu chi')?>';
+</script>

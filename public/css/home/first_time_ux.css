@@ -1,0 +1,83 @@
+.first-time-ux {
+  -webkit-box-sizing: border-box;
+  moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px
+}
+
+.first-time-ux .modal-body {
+  position: relative;
+  max-height: none;
+  padding-bottom: 30px
+}
+
+.first-time-ux .modal-body > h3 {
+  text-align: center;
+  margin-bottom: 0px
+}
+
+.first-time-ux .modal-body .skip {
+  position: absolute;
+  top: 10px;
+  right: 10px
+}
+
+.first-time-ux .modal-body .next, .first-time-ux .modal-body .previous {
+  position: absolute;
+  font-size: 40px
+}
+
+.first-time-ux .modal-body .next:hover, .first-time-ux .modal-body .previous:hover {
+  text-decoration: none
+}
+
+.first-time-ux .modal-body .next {
+  right: 40px;
+  top: 250px
+}
+
+.first-time-ux .modal-body .previous {
+  left: 40px;
+  top: 250px
+}
+
+.first-time-ux .modal-body .dotdot {
+  text-align: center;
+  padding: 30px 0px 0
+}
+
+.first-time-ux .modal-body .dotdot .dot {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: #ddd;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px
+}
+
+.first-time-ux .modal-body .dotdot .dot:hover {
+  cursor: pointer
+}
+
+.first-time-ux .modal-body .dotdot .dot.active {
+  background-color: #3e90ca
+}
+
+.first-time-ux .modal-body .dotdot .dot:first-child {
+  margin-right: 10px
+}
+
+.first-time-ux .show-box {
+  text-align: center
+}
+
+.first-time-ux .show-box > h4 {
+  margin-bottom: 20px
+}
+
+.first-time-ux .cover img {
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2)
+}

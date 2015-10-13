@@ -1,0 +1,42 @@
+<?php
+
+/* @var $form Zend\Form\Form */
+if(!($form = $this->form)) {
+	return;
+}
+$form->prepare();
+
+$formClass = $form->getAttribute('class') ? $form->getAttribute('class') .' form-inline' : 'form-inline';
+$form->setAttribute('class', $formClass);
+$form->setAttribute('role', 'form');
+echo $this->form()->openTag($form);
+
+foreach ($form as $element) {
+	/* @var $element \Zend\Form\Element */
+	if(!$element->getAttribute('id')) {
+		$element->setAttribute('id', $element->getName());
+	}
+
+	$class = 'form-control';
+	if($element instanceof \Zend\Form\Element\Submit) {
+		$class .= ' btn-sm';
+	}
+	if($element->getAttribute('class')) {
+		$class .= ' '. $element->getAttribute('class');
+	}
+	$element->setAttribute('class', $class);
+
+	if($element instanceof \Zend\Form\Element\Csrf || $element instanceof \Zend\Form\Element\Hidden) {
+		echo $this->formElement($element);
+	} else {
+	    $outerClass= 'form-group';
+	    if($element->getOption('main-text-search')){
+	        $outerClass .= ' main-text-search';
+	    }
+		echo '<div class="'.$outerClass.'">';
+		echo $this->formElement($element);
+		echo '</div> ';
+	}
+}
+
+echo $this->form()->closeTag($form);

@@ -1,0 +1,13 @@
+<?php
+
+?>
+<table class="table">
+    <tbody>
+        <?php foreach ($this->items as $item){?>
+        <tr <?= $item['is_company']?'class="danger"':''?>>
+            <td><?= $item['ID'].' - '. str_repeat('---- ', $item['ord']).  $item['title']?></td>
+            <td><?= $item['is_company']?'<i class="text-danger">**</i>':''?></td>
+        </tr>
+        <?php }?>
+    </tbody>
+</table>

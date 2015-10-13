@@ -1,0 +1,38 @@
+<ul class='main-menu'>
+	<?= renderMenu($this, $this->container)?>
+</ul>
+<?php
+function renderMenu($view, $container) {
+	foreach ($container as $menu) {
+		if (!$view->navigation()->accept($menu)) {
+			continue;
+		}
+		$isActive = $menu->isActive(true);
+		printf('<li class="%s">', $isActive ? 'active' : '');
+		$icon = '';
+		if(isset($menu->ico) && $menu->ico) {
+		    $icon = '<i class="'. $menu->ico .'"></i>';
+		}
+        $iDown = '';
+        $aClass = '';
+        $label = $menu->label;
+        if (empty($menu->pages)) {
+            $href = "href='".$menu->getHref()."'";
+        } else {
+        	$aClass = 'js-sub-menu-toggle';
+            $href = "rel='".$menu->getHref()."'";
+            if($isActive) {
+                $iDown = "<i class='toggle-icon fa fa-angle-right'></i>";
+            } else {
+                $iDown = "<i class='toggle-icon fa fa-angle-left'></i>";
+            }
+        }
+        echo "<a class='$aClass' $href>$icon <span class='text'>$label</span> $iDown</a>";
+		if (!empty($menu->pages)) {
+			printf('<ul class="sub-menu %s">', $isActive ? 'open' : '');
+			echo renderMenu($view, $menu->pages, "child");
+			echo '</ul>';
+		}
+		echo '</li>';
+	}
+}

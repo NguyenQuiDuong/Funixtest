@@ -1,0 +1,61 @@
+<?php
+$this->headTitle($this->escapeHtml($this->translate("Đăng nhập")));
+$this->headLink()->prependStylesheet('/css/style-sign-in.css');
+?>
+<div class='topBlock'>
+	<center>
+		<div class='customizeContainer'>
+			<div class='module'>
+				<h1 class='title'>
+					Sign in
+				</h1>
+
+				<div class='session'>
+					<div class='row-fluid'>
+						<div class='span12'>
+
+							<?php
+							$form  = $this->form;
+							$form->setAttributes([
+								'method'	=>	'Post',
+								'action'	=>	'/user/signin'
+							]);
+							$form->prepare();
+
+							echo $this->form()->openTag($form);
+							echo $this->formelement($form->get('username')->setAttributes(array(
+								'class'			=>	'inputName',
+								'autofocus'		=>	'autofocus',
+								'placeholder'	=>	'Tên đăng nhập',
+							)));
+							echo $this->formelementerrors($form->get('username'),[
+								'class'	=>	'center alert alert-error flash-message topAlert'
+							]);
+							echo $this->formelement($form->get('password')->setAttributes(array(
+								'class'		=>	'inputPassword',
+								'autofocus'	=>	'autofocus',
+								'placeholder'	=>	'Mật khẩu'
+							)));
+							if($form->getElements()['captcha'] != null){
+								echo $this->formelement($form->get('captcha'));
+							}
+							echo $this->formelement($form->get('submit')->setAttributes(array(
+								'class' =>  'btn btn-primary submitBtn',
+
+							)));
+							echo $this->form()->closeTag();
+							?>
+
+<!--							<div class='sharedTitle'>-->
+<!--								<a class="sharedTitle" href="/users/reset">Forgot your password?</a>-->
+<!--							</div>-->
+							<div class='sharedTitle'>
+								<a class="sharedTitle" href="/user/signup">Bạn chưa có tài khoản?</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</center>
+</div>

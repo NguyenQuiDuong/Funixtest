@@ -1,0 +1,24 @@
+<?php
+	use Home\Model\Format;
+$this->headTitle($this->escapeHtml($this->translate("Hợp nhất 2 sản phẩm")));
+	$this->headScript()->appendFile('/min/f=/tp/v1/js/system/tool/mergerproduct.js?01');
+?>
+
+<div class="main-header">
+	<h2><?= $this->translate('Hợp nhất 2 sản phẩm')?></h2>
+	<em>Các trường có dấu * là bắt buộc phải nhập</em>
+</div>
+<?php
+if($this->errorMsg){?>
+<div class="alert alert-danger">
+<?= $this->errorMsg?>
+</div>
+<?php
+return;
+}?>
+<?=$this->partial('partial/formInput',array('form' => $this->form));?>
+<?php
+if($this->queries){
+echo Format::displaySetItems($this->queries, '<br/>');
+}
+?>

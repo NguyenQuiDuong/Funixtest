@@ -1,0 +1,24 @@
+<div class="widget-content">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>AccountId</th>
+				<th>LeadId</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<?php if($this->result):
+			$index = 1;
+			foreach ($this->result as $accountId=>$leadId):
+			?>
+			<tr>
+				<td><?= $index++?></td>
+				<td><?= $accountId?></td>
+				<td><?= $leadId?></td>
+			</tr>
+			<?php endforeach;endif;?>
+		</tbody>
+	</table>
+</div>

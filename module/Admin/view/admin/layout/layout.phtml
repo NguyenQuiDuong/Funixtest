@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php
+use Work\Model\Task;
+use Zend\Validator\InArray;
+?>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <?php
+    $this->headTitle('FUNIX', 'PREPEND');
+    $this->headTitle()->setSeparator('-');
+    echo $this->headTitle()->setAutoEscape(false);
+    $this->headMeta()->appendName('DC.language', 'scheme=utf-8 content=vi');
+    $this->headMeta()->appendName('SKYPE_TOOLBAR', 'SKYPE_TOOLBAR_PARSER_COMPATIBLE');
+
+    echo $this->headMeta();
+    echo $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => '/favicon.png']);
+    $style = array(
+    	'/js/jquery/jquery-ui.min.css',
+        '/css/font-awesome.min.css',
+        '/css/bootstrap.css',
+        '/css/bootstrap-admin.css',
+        '/css/darkblue.css',
+        '/tp/v1/css/a.css',
+//     	'/css/daterangepicker-bs3.css',
+// 		'/css/bootstrap-datetimepicker.css',
+    );
+    echo '<link rel="stylesheet" href="/min/f=' . implode(',', $style) . '?14" type="text/css">';
+	?>
+</head>
+
+<body class="">
+<div class="wrapper">
+<header class="top-bar">
+    <?php echo $this->render('/header'); ?>
+</header>
+<div class='bottom'>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 left-sidebar">
+			<nav class='main-nav'>
+				<ul class="main-menu"/>
+			<?php
+			$userActions = array(
+				'Danh sách thành viên' => '/admin/user'
+			);
+			$subjectAction = array(
+				'Danh sách môn học'		=>	'/admin/subject',
+				'Danh sách danh mục'	=>	'/admin/subject/category',
+				'Thêm môn học'			=>	'/admin/subject/add',
+				'Thêm danh mục'			=>	'/admin/subject/addcategory'
+			);
+			$expertAction = array(
+				'Danh sách mentor'		=>	'/admin/expert',
+				'Thêm mentor'			=>	'/admin/expert/add',
+			);
+			$urlArray = explode('/',$_SERVER['REDIRECT_URL']);
+				if($urlArray[1]=='admin'){
+					if($urlArray[2] == 'subject'){
+						foreach($subjectAction as $titleAction => $link){
+							if($urlArray[3] == explode('/',$link)[3]){
+								echo '<li class="active">';
+								echo '<a href="'.$link.'"/>'.$titleAction.'</a>';
+								echo '</li>';
+							}else{
+								echo '<li>';
+								echo '<a href="'.$link.'"/>'.$titleAction.'</a>';
+								echo '</li>';
+							}
+						}
+					}
+					if($urlArray[2] == 'user'){
+						foreach($userActions as $titleAction => $link){
+							if($urlArray[3] == explode('/',$link)[3]){
+								echo '<li class="active">';
+								echo '<a href="'.$link.'"/>'.$titleAction.'</a>';
+								echo '</li>';
+							}else{
+								echo '<li>';
+								echo '<a href="'.$link.'"/>'.$titleAction.'</a>';
+								echo '</li>';
+							}
+						}
+					}
+					if($urlArray[2] == 'expert'){
+						foreach($expertAction as $titleAction => $link){
+							if($urlArray[3] == explode('/',$link)[3]){
+								echo '<li class="active">';
+								echo '<a href="'.$link.'"/>'.$titleAction.'</a>';
+								echo '</li>';
+							}else{
+								echo '<li>';
+								echo '<a href="'.$link.'"/>'.$titleAction.'</a>';
+								echo '</li>';
+							}
+						}
+					}
+				}
+			?>
+				</ul>
+			<div class="sidebar-minified js-toggle-minified">
+				<i class="fa fa-angle-left"></i>
+			</div>
+			</nav>
+			<nav class="quickLinkNav"></nav>
+			</div>
+			<div class="col-md-10 content-wrapper">
+		    	<?php echo $this->content; ?>
+		    </div>
+		</div>
+	</div>
+</div>
+<footer class="footer">
+    <?php echo $this->render('/footer'); ?>
+</footer>
+<script type='text/javascript'>
+	var usrCnf = {language: 'vi'};
+</script>
+<?php
+$js = array(
+	'/js/jquery/jquery.min.js',
+	'/js/jquery/autoNumeric.min.js',
+	'/js/jquery/jquery-ui.min.js',
+	'/js/jquery/bootstrap.min.js',
+	'/js/jquery/bootstrap-admin.js',
+	'/js/jquery/modernizr.js',
+	'/js/daterangepicker/moment.js',
+	'/js/daterangepicker/daterangepicker.js',
+	'/js/combodate.js',
+	'/js/notification/jquery.gritter.min.js',
+	'/js/bootstrap-datetimepicker.js',
+    '/js/jquery/select2.min.js',
+
+);
+echo '<script type="text/javascript" src="/min/f=' . implode(',', $js) . '?2"></script>';
+echo '<script type="text/javascript" src="/tool/ckeditor/ckeditor.js"></script>';
+echo '<script type="text/javascript" src="/min/f=' . implode(',', [
+		'/js/erp/loadData.js',
+		'/tp/v1/js/a.js',
+		]) . '?19"></script>';
+echo $this->headScript();
+echo $this->inlineScript();
+?>
+</div>
+</body>
+</html>

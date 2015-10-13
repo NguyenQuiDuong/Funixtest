@@ -1,0 +1,974 @@
+.bgcolor1 {
+  background-color: #5cb860 !important
+}
+
+.bgcolor2 {
+  background-color: #F9845B !important
+}
+
+.bgcolor3 {
+  background-color: #3079AB !important
+}
+
+.bgcolor4 {
+  background-color: #e59a13 !important
+}
+
+.bgcolor5 {
+  background-color: #637a91 !important
+}
+
+.bgcolor6 {
+  background-color: #39ADD1 !important
+}
+
+.bgcolor7 {
+  background-color: #53BBB4 !important
+}
+
+.bgcolor8 {
+  background-color: #2c9676 !important
+}
+
+.bgcolor9 {
+  background-color: #c25975 !important
+}
+
+.bgcolor10 {
+  background-color: #7D669E !important
+}
+
+.bgcolor11 {
+  background-color: #f092b0 !important
+}
+
+.bgcolor12 {
+  background-color: #e15258 !important
+}
+
+.bgcolor13 {
+  background-color: #838CC7 !important
+}
+
+.directory {
+  background-color: #e9eaec
+}
+
+.directory .arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 6px solid #000000;
+  cursor: pointer
+}
+
+.directory .ratingNum {
+  vertical-align: top;
+  font-size: 80%;
+  color: #666
+}
+
+.directory .arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 6px solid #000000;
+  cursor: pointer
+}
+
+.directory .arrow-down:hover {
+  border-top: 6px solid #6E6E6E
+}
+
+.directory .arrow-down:active {
+  overflow: visible
+}
+
+.directory .searchBlock {
+  padding: 25px 0px 0px;
+  font-size: 0px;
+  box-sizing: border-box
+}
+
+.directory .searchBlock .searchBarContent {
+  border: 0px;
+  margin: 0px;
+  vertical-align: top;
+  display: inline-block;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+  min-height: 38px;
+  background-color: #fff
+}
+
+@media (min-width: 1200px) {
+  .directory .searchBlock .searchBarContent {
+    width: 90%
+  }
+}
+
+@media (max-width: 1199px) {
+  .directory .searchBlock .searchBarContent {
+    width: 90%
+  }
+}
+
+@media (max-width: 979px) {
+  .directory .searchBlock .searchBarContent {
+    width: 88%
+  }
+}
+
+@media (max-width: 767px) {
+  .directory .searchBlock .searchBarContent {
+    width: 82%
+  }
+}
+
+.directory .searchBlock .searchBarContent .tag-item {
+  height: 32px;
+  line-height: 30px;
+  padding: 0 7px
+}
+
+.directory .searchBlock .searchBarContent .input {
+  height: 32px
+}
+
+.directory .searchBlock .searchBarContent .tags {
+  border: 0px;
+  border-right: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  -webkit-border-top-right-radius: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  -moz-border-top-right-radius: 0px;
+  -moz-border-bottom-right-radius: 0px
+}
+
+.directory .searchBlock .searchButton {
+  background: #3e90ca;
+  display: inline-block;
+  line-height: 38px;
+  color: #fff;
+  text-align: center;
+  border: 1px solid #3e90ca;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  font-size: 12px;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: top;
+  cursor: pointer
+}
+
+.directory .topBlock {
+  padding: 30px 0 40px;
+  background-color: #09455D
+}
+
+.directory .topBlock .learnCenterImg {
+  max-height: 360px;
+  width: auto
+}
+
+@media (max-width: 767px) {
+  .directory .topBlock .learnCenterImg {
+    float: none;
+    margin-top: 30px
+  }
+}
+
+.directory .topBlock h1 {
+  color: #fff;
+  font-size: 2.3em;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 20px 0px 20px;
+  text-align: left
+}
+
+@media (max-width: 767px) {
+  .directory .topBlock h1 {
+    text-align: center;
+    line-height: 1
+  }
+}
+
+.directory .topBlock h1 .header-img {
+  height: 1.2em;
+  width: auto;
+  margin-right: 10px
+}
+
+.directory .topBlock p {
+  color: #eee;
+  font-size: 1.1em;
+  line-height: 1.5;
+  font-weight: 400;
+  text-align: left
+}
+
+@media (max-width: 767px) {
+  .directory .topBlock p {
+    text-align: center;
+    padding-right: 0px
+  }
+}
+
+.directory .breadcrumb {
+  background: #0D6182;
+  border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  margin: 0px 0px 10px;
+  border-bottom: 1px solid #ddd;
+  height: 20px
+}
+
+.directory .breadcrumb .innerBreadcrumb {
+  text-align: left
+}
+
+.directory .breadcrumb .breadLink {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #eee
+}
+
+.directory .breadcrumb .sign {
+  font-size: 14px;
+  line-height: 20px;
+  color: #eee
+}
+
+.directory .breadcrumb .lastLink {
+  font-size: 14px;
+  line-height: 20px;
+  color: #ccc;
+  font-weight: 500
+}
+
+.directory .resultOpacity {
+  opacity: 0.3
+}
+
+.directory .resultBlock {
+  padding: 20px 0 25px
+}
+
+.directory .resultBlock .leftBlock {
+  box-shadow: rgba(0, 0, 0, 0.05) 0 1px 3px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.05) 0 1px 3px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 0.05) 0 1px 3px 0;
+  background: #fff;
+  margin-top: 5px;
+  margin-bottom: 25px;
+  padding-bottom: 10px
+}
+
+.directory .resultBlock .leftBlock .blockTitle {
+  line-height: 40px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #ebebeb;
+  padding: 0px 20px;
+  font-size: 14px
+}
+
+.directory .resultBlock .leftBlock hr {
+  margin: 0px auto;
+  width: 89%
+}
+
+.directory .resultBlock .leftBlock .language-filter {
+  color: #999
+}
+
+.directory .resultBlock .leftBlock .language-filter > i {
+  margin-left: 5px;
+  text-decoration: none
+}
+
+.directory .resultBlock .leftBlock .language-filter:hover {
+  cursor: pointer;
+  text-decoration: underline
+}
+
+.directory .resultBlock .leftBlock .language-filter .icon-caret-down {
+  display: none
+}
+
+.directory .resultBlock .leftBlock .language-filter.active {
+  color: #333
+}
+
+.directory .resultBlock .leftBlock .language-filter.active .icon-caret-right {
+  display: none
+}
+
+.directory .resultBlock .leftBlock .language-filter.active .icon-caret-down {
+  display: inline-block
+}
+
+.directory .resultBlock .leftBlock .blockContent {
+  padding: 12px 20px
+}
+
+.directory .resultBlock .leftBlock .blockContent .sub-title {
+  margin-bottom: 0.4em;
+  display: block;
+  font-weight: bold
+}
+
+.directory .resultBlock .leftBlock .blockContent .span12 {
+  min-height: 0px
+}
+
+.directory .resultBlock .leftBlock .blockContent label {
+  margin-bottom: 0px
+}
+
+.directory .resultBlock .leftBlock .blockContent label.checkbox-filter {
+  color: #999
+}
+
+.directory .resultBlock .leftBlock .blockContent label.checkbox-filter input {
+  margin-top: 0
+}
+
+.directory .resultBlock .leftBlock .blockContent label.checkbox-filter.active {
+  font-weight: bold;
+  color: #666
+}
+
+.directory .resultBlock .leftBlock .blockContent label.checkbox-filter.first-free {
+  color: #b94a48
+}
+
+.directory .resultBlock .leftBlock .blockContent .subDescription {
+  margin-bottom: 10px;
+  line-height: 40px
+}
+
+.directory .resultBlock .leftBlock .blockContent .filter {
+  line-height: 34px;
+  color: #999
+}
+
+.directory .resultBlock .leftBlock .blockContent .filter .freeSessionFilter {
+  color: #b94a48;
+  line-height: 24px
+}
+
+.directory .resultBlock .leftBlock .blockContent .filter .freeSessionFilter:hover {
+  color: #C76D6B
+}
+
+.directory .resultBlock .leftBlock .blockContent .removeDecorate {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px
+}
+
+.directory .resultBlock .leftBlock .blockContent .removeDecorate .filter {
+  line-height: 24px;
+  display: block;
+  color: #999
+}
+
+.directory .resultBlock .leftBlock .blockContent .removeDecorate .filter.active {
+  font-weight: bold;
+  color: #666
+}
+
+.directory .resultBlock .leftBlock .blockContent .removeDecorate .groupLink {
+  line-height: 40px;
+  display: block;
+  color: #999
+}
+
+.directory .resultBlock .leftBlock .blockContent .removeDecorate .groupLink .groupIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px
+}
+
+.directory .resultBlock .leftBlock .blockContent .removeDecorate .groupLink.active {
+  font-weight: bold;
+  color: #666
+}
+
+.directory .resultBlock .leftBlock .blockContent .removeDecorate .linkBlock .catLink {
+  line-height: 40px;
+  color: #999;
+  cursor: pointer;
+  width: 100%;
+  display: block
+}
+
+.directory .resultBlock .leftBlock .blockContent .removeDecorate .linkBlock .catLink .categoryImg {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px
+}
+
+.directory .resultBlock .leftBlock .blockContent .removeDecorate .linkBlock .catLink .plusLine {
+  line-height: 40px;
+  display: none;
+  text-decoration: none
+}
+
+.directory .resultBlock .leftBlock .blockContent .removeDecorate .linkBlock .catLink:hover .plusLine {
+  display: inline-block;
+  margin-left: 5px
+}
+
+.directory .resultBlock .leftBlock .blockContent .removeDecorate .linkBlock .active {
+  font-weight: bold;
+  color: #666
+}
+
+.directory .resultBlock .leftBlock .language-list label {
+  margin-bottom: 3px
+}
+
+.directory .resultBlock .freeActive {
+  font-weight: bold
+}
+
+.directory .resultBlock #freeHint {
+  color: #999;
+  text-decoration: none
+}
+
+.directory .resultBlock .headImg {
+  width: 80px
+}
+
+.directory .resultBlock .resultHeader {
+  margin-top: 5px;
+  background: #f8f9fa;
+  font-size: 14px;
+  padding: 0px 20px
+}
+
+.directory .resultBlock .resultHeader .columnName {
+  line-height: 40px
+}
+
+.directory .resultBlock .mentorModule {
+  background: #fff;
+  padding: 20px 20px 20px;
+  border-top: 1px solid #ebebeb;
+  min-height: 110px;
+  position: relative
+}
+
+.directory .resultBlock .mentorModule .name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #3e90ca;
+  line-height: 23px
+}
+
+.directory .resultBlock .mentorModule .groupImg {
+  width: 16px;
+  height: 16px;
+  margin-right: 3px
+}
+
+.directory .resultBlock .mentorModule .online {
+  margin-left: 5px
+}
+
+.directory .resultBlock .mentorModule .online > span.away {
+  color: #F9C928
+}
+
+.directory .resultBlock .mentorModule .for-hire {
+  margin-left: 5px;
+  color: #CE4A3A;
+  font-weight: bold
+}
+
+.directory .resultBlock .mentorModule .headLine {
+  margin-top: 5px;
+  color: #666;
+  font-weight: bold
+}
+
+.directory .resultBlock .mentorModule .headLine em {
+  font-style: normal;
+  color: #000
+}
+
+.directory .resultBlock .mentorModule .hirable {
+  color: #999;
+  margin-top: 8px;
+  font-size: 85%
+}
+
+.directory .resultBlock .mentorModule .about {
+  color: #8e979b;
+  margin-top: 5px
+}
+
+.directory .resultBlock .mentorModule .about em {
+  font-style: normal;
+  font-weight: bold
+}
+
+.directory .resultBlock .mentorModule .expertise {
+  display: block;
+  margin-top: 10px
+}
+
+.directory .resultBlock .mentorModule .expertise .customizeBadge {
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  background-color: #f2f2f2;
+  font-size: 0.8em;
+  padding: 2px 6px 3px;
+  margin-bottom: 4px;
+  font-weight: normal
+}
+
+@media (max-width: 480px) {
+  .directory .resultBlock .mentorModule .expertise .customizeBadge {
+    margin-right: 8px;
+    margin-bottom: 8px
+  }
+}
+
+.directory .resultBlock .mentorModule .expertise .customizeBadge em {
+  font-style: normal;
+  font-weight: bold
+}
+
+.directory .resultBlock .mentorModule .expertise .customizeBadge .removeDec {
+  color: #777;
+  text-shadow: none
+}
+
+.directory .resultBlock .mentorModule .expertise .space {
+  margin-right: 4px
+}
+
+.directory .resultBlock .mentorModule .language {
+  display: block;
+  margin-top: 10px
+}
+
+.directory .resultBlock .mentorModule .language .customizeBadge {
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  background-color: #D3E4F2;
+  font-size: 0.8em;
+  padding: 2px 6px 3px;
+  margin-bottom: 4px;
+  font-weight: normal
+}
+
+@media (max-width: 480px) {
+  .directory .resultBlock .mentorModule .language .customizeBadge {
+    margin-right: 8px;
+    margin-bottom: 8px
+  }
+}
+
+.directory .resultBlock .mentorModule .language .customizeBadge em {
+  font-style: normal;
+  font-weight: bold
+}
+
+.directory .resultBlock .mentorModule .language .customizeBadge .removeDec {
+  color: #777;
+  text-shadow: none
+}
+
+.directory .resultBlock .mentorModule .language .space {
+  margin-right: 4px
+}
+
+.directory .resultBlock .mentorModule .label-trial {
+  background-color: #ec452f;
+  color: #fff;
+  border: 0px;
+  font-size: 10px;
+  padding: 0.3em 0.5em
+}
+
+.directory .resultBlock .mentorModule .rating {
+  padding: 0;
+  text-align: left
+}
+
+.directory .resultBlock .mentorModule .rating .star {
+  margin-right: 3px;
+  float: left
+}
+
+.directory .resultBlock .mentorModule .rating:after {
+  clear: both
+}
+
+.directory .resultBlock .mentorModule .lastColumn {
+  position: relative
+}
+
+.directory .resultBlock .mentorModule .lastColumn strong small.red {
+  display: block
+}
+
+.directory .resultBlock .mentorModule .lastColumn .backDiv {
+  display: none;
+  position: absolute;
+  text-align: left;
+  vertical-align: bottom;
+  bottom: 20px;
+  left: 0px;
+  padding: 80px 0px 0px;
+  width: 100%;
+  background: -moz-linear-gradient(top, rgba(248, 249, 250, 0) 0%, #f8f9fa 46%, #f8f9fa 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(248, 249, 250, 0)), color-stop(46%, #f8f9fa), color-stop(100%, #f8f9fa));
+  background: -webkit-linear-gradient(top, rgba(248, 249, 250, 0) 0%, #f8f9fa 46%, #f8f9fa 100%);
+  background: -o-linear-gradient(top, rgba(248, 249, 250, 0) 0%, #f8f9fa 46%, #f8f9fa 100%);
+  background: -ms-linear-gradient(top, rgba(248, 249, 250, 0) 0%, #f8f9fa 46%, #f8f9fa 100%);
+  background: linear-gradient(to bottom, rgba(248, 249, 250, 0) 0%, #f8f9fa 46%, #f8f9fa 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00f8f9fa', endColorstr='#f8f9fa', GradientType=0)
+}
+
+@media (max-width: 767px) {
+  .directory .resultBlock .mentorModule .lastColumn .backDiv {
+    background: none;
+    display: inherit;
+    bottom: 10px;
+    padding: 0px;
+    text-align: right
+  }
+
+  .directory .resultBlock .mentorModule .lastColumn .backDiv > .msgBtn {
+    display: inherit
+  }
+}
+
+.directory .resultBlock .mentorModule .lastColumn .freeLength {
+  display: block;
+  font-size: 12px
+}
+
+.directory .resultBlock .mentorModule .lastColumn .msgBtn {
+  color: #16bb8e;
+  font-weight: bold;
+  display: none
+}
+
+.directory .resultBlock .mentorModule:hover:not(.feature-mentors) {
+  background: #f8f9fa
+}
+
+.directory .resultBlock .mentorModule:hover:not(.feature-mentors) .backDiv {
+  display: inherit
+}
+
+.directory .resultBlock .mentorModule:hover:not(.feature-mentors) .msgBtn {
+  display: inherit
+}
+
+.directory .resultBlock .mentorModule .dummy-layer {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  box-sizing: border-box;
+  padding: 0 20px
+}
+
+.directory .resultBlock .mentorModule .dummy-layer > [class*="span"] {
+  min-height: 1px;
+  padding: 0px
+}
+
+.directory .resultBlock .mentorModule .fake-mentor {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #ddd;
+  z-index: 1;
+  padding: 20px;
+  box-sizing: border-box
+}
+
+.directory .resultBlock .mentorModule .fake-mentor .fake-avatar {
+  margin: 15px 0 0 50px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 100px;
+  height: 100px
+}
+
+.directory .resultBlock .mentorModule .fake-mentor .fake-rate {
+  margin: 20px 0 0 50px;
+  width: 100px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.1)
+}
+
+.directory .resultBlock .mentorModule .fake-mentor .fake-info {
+  width: 80%;
+  height: 15px;
+  margin-top: 16px;
+  background-color: rgba(0, 0, 0, 0.1)
+}
+
+.directory .resultBlock.resultOpacity .mentorModule {
+  position: relative
+}
+
+.directory .resultBlock.resultOpacity .mentorModule .fake-mentor {
+  display: block
+}
+
+.directory .resultBlock .signupModule {
+  margin-top: 25px;
+  background: #e9eaec;
+  padding: 10px 20px 10px
+}
+
+.directory .resultBlock .signupModule .signupTitle {
+  text-align: center;
+  color: #333
+}
+
+.directory .resultBlock .recentPostHeader {
+  margin-top: 25px;
+  background: #f8f9fa;
+  font-size: 14px;
+  padding: 0px 20px
+}
+
+.directory .resultBlock .recentPostHeader .columnName {
+  line-height: 40px
+}
+
+.directory .resultBlock .relatedPost .postModule {
+  background: #fff;
+  padding: 20px 20px 20px;
+  border-top: 1px solid #ebebeb;
+  min-height: 110px;
+  position: relative
+}
+
+.directory .resultBlock .relatedPost .postModule .title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #3e90ca;
+  line-height: 23px
+}
+
+.directory .resultBlock .showMorePost {
+  background: #f8f9fa;
+  font-size: 14px;
+  width: 100%;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center
+}
+
+.directory .topicBlock {
+  display: block;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 1px 3px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.05) 0 1px 3px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 0.05) 0 1px 3px 0;
+  margin-bottom: 40px;
+  background: #fff
+}
+
+.directory .topicBlock:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 0 8px 16px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 8px 16px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 8px 16px 0
+}
+
+.directory .topicBlock .link {
+  text-decoration: none
+}
+
+.directory .topicBlock .imgBlock {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 100px
+}
+
+.directory .topicBlock .titleBlock {
+  display: block;
+  padding: 15px 15px 35px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: -70px
+}
+
+.directory .topicBlock .moreLink {
+  display: block;
+  padding: 15px;
+  background: #fff;
+  margin-bottom: 0px
+}
+
+.directory .topicBlock .moreLink li {
+  padding-left: 0px;
+  padding-right: 10px;
+  line-height: 30px
+}
+
+.directory .topicBlock .moreLink .catImg {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px
+}
+
+.directory .topicBlock .moreLink .catLink {
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none
+}
+
+.directory .topicBlock .moreLink .catLink:hover {
+  color: #000
+}
+
+.directory .catBlock {
+  display: block;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  margin-bottom: 20px;
+  background: #fff;
+  text-align: center
+}
+
+.directory .catBlock .imgBlock {
+  display: block;
+  width: 100%;
+  height: 120px
+}
+
+.directory .catBlock .imgBlock img {
+  width: 100px;
+  height: 100px
+}
+
+.directory .catBlock .catName {
+  color: #666;
+  font-size: 20px;
+  font-weight: 500;
+  display: block;
+  text-align: center;
+  padding-bottom: 20px
+}
+
+.directory .catBlock .linkBtn {
+  color: #999;
+  border-radius: 100px;
+  -moz-border-radius: 100px;
+  -webkit-border-radius: 100px;
+  border: 2px solid #999;
+  text-transform: uppercase;
+  padding: 0 0.5em;
+  font-weight: bold;
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+  line-height: 32px;
+  height: 36px;
+  display: block;
+  width: 90%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  text-decoration: none;
+  font-size: 12px
+}
+
+.directory .catBlock .linkBtn:hover {
+  background: #999;
+  color: #fff
+}
+
+.directory .catBlock .description {
+  padding: 0px 10px;
+  margin-bottom: 20px;
+  min-height: 110px
+}
+
+.directory .moreCatBlock {
+  display: block;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  margin-bottom: 20px;
+  background: #fff
+}
+
+.directory .moreCatBlock:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 0 8px 16px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 8px 16px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 8px 16px 0;
+  text-decoration: none
+}
+
+.directory .moreCatBlock:hover .catName {
+  color: #000
+}
+
+.directory .moreCatBlock .catImg {
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+  border-right: 1px solid #eee;
+  padding: 15px;
+  background: #f8f9fa;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -webkit-top-left-border-radius: 5px;
+  -webkit-bottom-left-border-radius: 5px;
+  -moz-top-left-border-radius: 5px;
+  -moz-bottom-left-border-radius: 5px
+}
+
+.directory .moreCatBlock .catName {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+  color: #666
+}
+
+.directory .subTitle {
+  font-weight: 500;
+  color: #adadad;
+  font-size: 21px
+}
+
+.feature-mentors .tooltip {
+  width: 300px;
+  background: none !important
+}
+
+footer {
+  margin-top: 0px
+}

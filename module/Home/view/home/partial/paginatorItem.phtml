@@ -1,0 +1,31 @@
+<?php
+if ($this->pageCount) {
+    echo '<div class="paginator">';
+    echo '<span class="labelPages">';
+    echo number_format($this->firstItemNumber) . ' - ' .
+        number_format($this->lastItemNumber) . ' / ' .
+        number_format($this->totalItemCount);
+    echo '</span>';
+    if ($this->pageCount > 1) {
+        $params = $this->app()->getQueryParams();
+        if (isset($this->previous)) {
+            $params['page'] = $this->first;
+            echo '<a class="fa fa-step-backward" href="' . $this->app()->appendUriParams($params) . '" title="'. $this->translate('Trang đầu') .'"></a> ';
+            $params['page'] = $this->previous;
+            echo '<a class="fa fa-backward" href="' . $this->app()->appendUriParams($params) . '" title="'. $this->translate('Trang trước') .'"></a> ';
+        } else {
+            echo '<span class="disabled fa fa-step-backward"></span>';
+            echo '<span class="disabled fa fa-backward"></span>';
+        }
+        if (isset($this->next)) {
+            $params['page'] = $this->next;
+            echo '<a class="fa fa-forward" href="'. $this->app()->appendUriParams($params) .'" title="'. $this->translate('Trang sau') .'"></a> ';
+            $params['page'] = $this->last;
+            echo '<a class="fa fa-step-forward" href="'. $this->app()->appendUriParams($params) .'" title="'. $this->translate('Trang cuối') .'"></a>';
+        } else {
+            echo '<span class="disabled fa fa-forward" title="'. $this->translate('Trang sau') .'"></span> ';
+            echo '<span class="disabled fa fa-step-forward" title="'. $this->translate('Trang cuối') .'"></span>';
+        }
+    }
+    echo '</div>';
+}

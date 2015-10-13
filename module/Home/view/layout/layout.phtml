@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <?php
+    $this->headTitle('Demo');
+    $this->headTitle()->setSeparator('-');
+    echo $this->headTitle()->setAutoEscape(false);
+    $this->headMeta()->appendName('DC.language', 'scheme=utf-8 content=vi');
+    $this->headMeta()->appendName('SKYPE_TOOLBAR', 'SKYPE_TOOLBAR_PARSER_COMPATIBLE');
+
+    echo $this->headMeta();
+    echo $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => '/favicon.png']);
+    $style = array(
+    	'/js/jquery/jquery-ui.min.css',
+        '/css/font-awesome.min.css',
+        '/css/bootstrap.min.css',
+        '/css/layout_wide.css',
+        
+    );
+    echo '<link rel="stylesheet" href="/min/f=' . implode(',', $style) . '?14" type="text/css">';
+	?>
+</head>
+
+<body class="">
+<div class="wrapper">
+<header class="top-bar">
+    <?php echo $this->render('layout/header'); ?>
+</header>
+<div id='main'style='margin-top:0px;'>
+<?php echo $this->content; ?>
+</div>
+<footer class="footer">
+    <?php echo $this->render('layout/footer'); ?>
+</footer>
+<script type='text/javascript'>
+	var usrCnf = {language: 'vi'};
+</script>
+<?php
+$js = array(
+	'/js/jquery/jquery.min.js',
+	'/js/jquery/autoNumeric.min.js',
+	'/js/jquery/jquery-ui.min.js',
+// 	'/js/jquery/bootstrap.min.js',
+	'/js/jquery/bootstrap-admin.js',
+	'/js/jquery/modernizr.js',
+	'/js/daterangepicker/moment.js',
+	'/js/daterangepicker/daterangepicker.js',
+	'/js/combodate.js',
+	'/js/notification/jquery.gritter.min.js',
+	'/js/bootstrap-datetimepicker.js',
+    '/js/jquery/select2.min.js',
+    '/js/application.js',
+
+);
+echo '<script type="text/javascript" src="/min/f=' . implode(',', $js) . '?2"></script>';
+echo '<script type="text/javascript" src="/tool/ckeditor/ckeditor.js"></script>';
+echo $this->headScript();
+echo $this->inlineScript();
+?>
+</div>
+</body>
+</html>

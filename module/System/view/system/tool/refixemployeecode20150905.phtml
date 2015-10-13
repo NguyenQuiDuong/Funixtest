@@ -1,0 +1,21 @@
+<?php
+	$this->headTitle($this->translate('Đánh lại mã nhân sự cho BNC'));
+	$paginator = $this->paginator;
+	/*@var $paginator \Zend\Paginator\Paginator */
+?>
+<input type='hidden' id="redirectUri" value="<?= $this->redirectUri?>" />
+<input type='hidden' id="defaultRedirectUri" value="<?= $this->defaultRedirectUri?>" />
+Số code hiện tại: <?= $this->code?><br/>
+
+<script type="text/javascript">
+	setTimeout(function(){
+		if(document.getElementById("redirectUri").value != "") {
+			window.location = document.getElementById("redirectUri").value;
+		} else if(document.getElementById("defaultRedirectUri").value != "") {
+			setTimeout(function(){
+				window.location = document.getElementById("defaultRedirectUri").value;
+			}, 600000);
+		}
+	}, 500);
+</script>
+<a href="<?= $this->defaultRedirectUri?>" class='lnk'>Restart [<?= $paginator->getCurrentPageNumber() .' / '. $paginator->count() ?>]</a><br><br>

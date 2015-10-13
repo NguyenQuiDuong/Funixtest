@@ -1,0 +1,17 @@
+<ul class="breadcrumb">
+	<li><a href="/accounting"><i class="fa fa-home"></i></a></li>
+	<li><a href="/accounting/account">kế toán</a></li>
+	<li class="active">Thêm tài khoản kế toán</li>
+</ul>
+<div id='page-idea-add'>
+    <?php
+            $this->headScript ()->appendFile ( '/min/f=/tp/v1/js/accounting/account/add.js?02' );
+			$this->headTitle ( $this->escapeHtml ( $this->translate ( " Danh sách kế toán" ) ) );
+				?>
+    <div class="main-header">
+		<h2><?= $this->translate('Thêm tài khoản kế toán') ?></h2>
+		<em>Các trường có dấu * là bắt buộc phải nhập</em>
+	</div>
+    <?= $this->partial('partial/formInput', array('form' => $this->form)); ?>
+    
+</div>

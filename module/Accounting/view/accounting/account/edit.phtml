@@ -1,0 +1,17 @@
+<ul class="breadcrumb">
+	<li><a href="/accounting"><i class="fa fa-home"></i></a></li>
+	<li><a href="/accounting/account">Danh sách tài khoản</a></li>
+	<li class="active">Sửa tài khoản</li>
+</ul>
+<div id='page-idea-edit'>
+    <?php
+            $this->headScript ()->appendFile ( '/min/f=/tp/v1/js/accounting/account/add.js?02' );
+			$this->headTitle ( $this->escapeHtml ( $this->translate ( "Sửa tài khoản" ) ) );
+				?>
+    <div class="main-header">
+		<h2><?= $this->translate('Sửa thông tin tài khoản') ?></h2>
+		<em>Các trường có dấu * là bắt buộc phải nhập</em>
+	</div>
+    <?= $this->partial('partial/formInput', array('form' => $this->form)); ?>
+</div>
+

@@ -1,0 +1,43 @@
+
+
+<ul class="breadcrumb">
+    <li><a href="/admin"><i class="fa fa-home"></i></a></li>
+    <li><a href="/admin/subject/index">Danh sách môn học</a></li>
+</ul>
+<div id='page-idea-contact'>
+    <?php
+    $this->headTitle ( $this->escapeHtml ( $this->translate ( "Danh sách môn học" ) ) );
+    echo '<div class="filterContainer">';
+    echo $this->partial ( 'partial/formFilter', [
+        'form' => $this->form
+    ] );
+    echo '</div>';
+
+    echo '</div>';
+    $dg = new \Admin\DataGrid\Subject\Subject ( [
+        'dataSource' => $this->paginator
+    ] );
+    echo $this->partial ( 'partial/dataGrid', [
+        'dataGrid' => $dg,
+        'title' => $this->translate ( "Danh sách môn học" ),
+        'topButtons' => '<a href="/admin/subject/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>Thêm môn học</a>'
+    ] );
+
+    ?>
+
+    <!-- Dialog bootstrap -->
+    <div id="alertModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Thông báo</h4>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type='button' class='btn btn-default reload' data-dismiss='modal'>Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>

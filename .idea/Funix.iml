@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/module" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/module/Home/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/module/Subject/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/module/Admin/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/module/System/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/module/Authorize/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/module/Address/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/module/Accounting/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/module/User/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/module/Website/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/public/min/lib" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/FirePHPCore" />
+      <excludeFolder url="file://$MODULE_DIR$/data" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="PHP">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/Zend" />
+          <root url="file://$MODULE_DIR$/vendor/ZendX" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/Zend" />
+          <root url="file://$MODULE_DIR$/vendor/ZendX" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>

@@ -1,0 +1,18 @@
+<?php
+	$this->headTitle($this->translate('update công phạt'));
+?>
+<input type='hidden' id="redirectUri" value="<?= $this->redirectUri?>" />
+<input type='hidden' id="defaultRedirectUri" value="<?= $this->defaultRedirectUri?>" />
+<b>Đã update: </b><?= $this->totalUpdate?>
+<script type="text/javascript">
+	setTimeout(function(){
+		if(document.getElementById("redirectUri").value != "") {
+			window.location = document.getElementById("redirectUri").value;
+		} else if(document.getElementById("defaultRedirectUri").value != "") {
+			setTimeout(function(){
+				window.location = document.getElementById("defaultRedirectUri").value;
+			}, 600000);
+		}
+	}, 500);
+</script>
+<a href="<?= $this->defaultRedirectUri?>" class='lnk'>Restart [<?= $this->page .' / '. $this->totalPages ?>]</a><br><br>

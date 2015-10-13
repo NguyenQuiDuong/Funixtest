@@ -1,0 +1,69 @@
+<?php
+$this->headTitle($this->escapeHtml($this->translate("Phân quyền theo chức danh")));
+$this->headScript()->appendFile('/min/f=/tp/v1/js/system/feature/role.js');
+
+$dg = new \System\DataGrid\Feature\Role(array(
+	'options' => array(
+		'roles' => $this->roles,
+		'features' => $this->features,
+		'mcaList' => $this->mcaList,
+	)
+));
+echo $this->partial('partial/dataGrid', [
+	'dataGrid' => $dg,
+	'title' => $this->translate("Phân quyền theo chức danh"),
+]);
+?>
+<style>
+.search_area{
+	position: fixed;
+	top:50px;
+	right: 0px;
+	z-index: 12;
+}
+.search_area .togger_searchbox{
+	font-size: 20px;
+	color: #FFA500;
+	float: left;
+	cursor: pointer;
+}
+.search_area .search_box{
+	width: 305px;
+	height: 80px;
+	float: left;
+}
+.search_area .search_box .search_box_content{
+	background: #fff;
+	border: 1px solid red;
+	border-radius :2px;
+	padding: 10px 5px;
+}
+.search_area .name_search{
+	width: 240px;
+	display: inline-block;
+}
+.search_area .search_module{
+	display: inline-block;
+	vertical-align: top;
+}
+table tr.found{
+	background: #FCF5DC;
+}
+</style>
+<div class="search_area">
+	<a class="togger_searchbox">
+		<i class="fa fa-chevron-circle-left "></i>
+	</a>
+	<div class="search_box hide">
+		<div class="search_box_content">
+			<div>
+				<input type="text" class="name_search form-control" size="40" placeholder="/module/controller/action"/>
+				<a class="btn btn-sm btn-warning search_module"><i class="fa fa-search icon"></i></a>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="errorDialog"  style="display: none;" title="Lỗi trong quá trình thực hiện"></div>
+<script>
+var lbClose = '<?= $this->translate('Đóng')?>';
+</script>

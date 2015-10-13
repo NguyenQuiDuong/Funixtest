@@ -1,0 +1,118 @@
+<?php
+$this->headTitle ( $this->escapeHtml ( $this->translate ( "Danh sách chức danh hệ thống" ) ) );
+$this->headScript()->appendFile('/min/f=/tp/v1/js/system/role/index.js');
+?>
+<ul class="breadcrumb">
+	<li><a href="/"><i class="fa fa-home"></i></a></li>
+	<li class="active">Danh sách quyền hệ thống</li>
+</ul>
+<div class="" id="fAddRole" style="display:none;">
+	<div class="widget widget-table">
+		<div class="widget-header">
+			<h3>
+				<i class="fa fa-table"></i> Tạo mới chức danh
+			</h3>
+		</div>
+		<div class="widget-content">
+			<div class="form-inline" id="fRole">
+				<div class="groupSelect">
+
+					<div class="form-group">
+						<input type="text" placeholder="Tên" class="form-control name"
+							value="">
+					</div>
+					<div class="form-group">
+						<input type="button" id="btnSaveRole"
+							class="form-control btn btn-primary" value="Lưu">
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+<?php
+$dg = new \System\DataGrid\System\Role(['dataSource' => $this->dataSource]);
+echo $this->partial('partial/dataGrid', [
+		'dataGrid' => $dg,
+		'title' => $this->translate("Danh sách chức danh"),
+		'topButtons' => '<a class="btn btn-primary btn-sm addRole"><i class="fa fa-plus"></i> Thêm chức danh</a>'
+		]);
+?>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Lỗi</h4>
+			</div>
+			<div class="modal-body">...</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Sửa chức danh</h4>
+			</div>
+			<div class="modal-body">
+				<input type="hidden" class="editId" value="" />
+				<div class="form-inline">
+					<div class="groupSelect">
+						<div class="form-group">
+							<label class="col-md-4 control-label">Tên</label>
+							<div class="col-md-8">
+								<input type="text" placeholder="Tên"
+									class="form-control editName" value="">
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary saveEdit">Lưu</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Xác nhận</h4>
+			</div>
+			<div class="modal-body">
+				<input type="hidden" class="confirmId" value=""/>
+				<div class="alert alert-warning alert-dismissable">
+
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary confirmYes" >Có</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+var confirmDeleteMsg = '<?= $this->translate('Bạn muốn xóa quyền')?>';
+</script>

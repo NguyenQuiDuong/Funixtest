@@ -1,0 +1,31 @@
+<?php
+$this->headTitle($this->escapeHtml($this->translate("Danh sách phiếu yêu cầu thu chi")));
+$this->headScript()->appendFile('/min/f=/tp/v1/js/accounting/transaction/index.js?02');
+?>
+<ul class="breadcrumb">
+	<li><a href="/accounting"><i class="fa fa-home"></i></a></li>
+	<li><a href="/accounting/account/index">Danh sách phiếu yêu cầu thu chi</a></li>
+</ul>
+<?php
+echo '<div class="filterContainer">';
+echo $this->partial('partial/formFilter', [
+    'form' => $this->form
+]);
+echo '</div>';
+
+$dg = new \Accounting\DataGrid\Transaction([
+    'dataSource' => $this->paginator,
+    'options' => array(
+        'loginUserId' => $this->loginUserId
+    )
+]);
+echo $this->partial('partial/dataGrid', [
+    'dataGrid' => $dg,
+    'title' => $this->translate("Danh sách phiếu yêu cầu thu chi"),
+]);
+?>
+<style>
+#dgTransaction i.date{
+	font-size: 0.85em;
+}
+</style>
